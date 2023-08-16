@@ -50,3 +50,13 @@ input, select, textarea {
     margin-bottom: 30px;
   }
 
+  .containerForm{
+     margin-left: 410px;
+    /*margin-top: 50px;
+    margin-bottom: 30px;
+    display: flex; */
+    border: 1px solid #000000;
+    border-radius: 15px;
+   align-items: center;
+   width: 450px;
+}
