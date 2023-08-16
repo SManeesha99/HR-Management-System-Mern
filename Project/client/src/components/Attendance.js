@@ -11,7 +11,6 @@ function withParams(Component) {
 }
 
 class Attendance extends Component {
-
     constructor(props) {
         super(props);
 
@@ -50,27 +49,6 @@ class Attendance extends Component {
         this.status = value;
     }
 
-    onDelete = (id) => {
-        Swal.fire({
-            title: 'Are you sure you want to delete this?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#FFB400',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios.delete(`/employee/post/${id}`).then((res) => {
-                    Swal.fire(
-                        'Deleted!',
-                        'employee has been deleted.',
-                        'success'
-                    )
-                    this.retrievePosts();
-                });
-            }
-        });
-    };
 
 
     render() {
