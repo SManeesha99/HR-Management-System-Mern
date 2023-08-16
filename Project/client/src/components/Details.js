@@ -10,7 +10,7 @@ function withParams(Component) {
     } />
 }
 
-class Attendance extends Component {
+class Details extends Component {
     constructor(props) {
         super(props);
 
@@ -71,7 +71,7 @@ class Attendance extends Component {
                                     <th scope="col" >Gender</th>
                                     <th scope="col" >Type</th>
                                     <th scope="col" >Salary</th>
-                                    <th scope="col" >Attendance</th>
+
 
                                 </thead>
                                 <tbody> {
@@ -104,9 +104,7 @@ class Attendance extends Component {
                                             <td>{
                                                 employee.salary
                                             }</td>
-                                            <td>{
-                                                employee.attendance
-                                            }</td>
+
 
                                             <center>
                                                 <td>
@@ -139,4 +137,4 @@ class Attendance extends Component {
     }
 }
 
-export default withParams(Attendance);
+export default withParams(Details);
