@@ -25,4 +25,4 @@ const leaveSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('attendance', leaveSchema);
+module.exports = mongoose.model('HRManagement', leaveSchema);

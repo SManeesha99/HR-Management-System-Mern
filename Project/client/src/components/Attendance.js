@@ -125,7 +125,7 @@ class Attendance extends Component {
 
                             </table>
 
-                            <a href="/employee/add">
+                            <a href="/add">
                                 <button className="btn" type="submit">
                                     Add Employee
                                 </button></a>
