@@ -3,26 +3,24 @@ const mongoose = require('mongoose');
 const leaveSchema = new mongoose.Schema({
     name: {
         type: String,
-        
     },
     email: {
         type: String,
-       
     },
     type: {
-        type: String,   
+        type: String,
     },
     gender: {
-        type: String,   
+        type: String,
     },
-    id: {
-        type: String,   
+    NIC: {
+        type: String,
     },
     salary: {
-        type: String,   
+        type: String,
     },
     attendance: {
-        type: String,   
+        type: String,
     }
 
 });
