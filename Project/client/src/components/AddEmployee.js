@@ -48,7 +48,7 @@ export default class AddEmployee extends Component {
       if (res.data.success) {
         console.log(res.data.success._id);
         var id = res.data.success._id;
-        window.location.href = `/attendance`;
+        window.location.href = `/details`;
 
         this.setState({
           name: "",
