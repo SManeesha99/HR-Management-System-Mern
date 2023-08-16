@@ -13,7 +13,7 @@ const leaveSchema = new mongoose.Schema({
     gender: {
         type: String,
     },
-    NIC: {
+    id: {
         type: String,
     },
     salary: {
