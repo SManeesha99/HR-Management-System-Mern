@@ -71,16 +71,17 @@ router.delete('/post/:id', (req, res) => {
 
 // Get specific employees
 router.get("/post/:id", (req, res) => {
-  let leaveId = req.params.id;
-  employees.findById(leaveId, (err, leave) => {
-    if (err) {
-      return res.status(400).json({ success: false, err });
-    }
-    return res.status(200).json({
-      success: true,
-      leave
-    });
-  });
+  let postId = req.params.id;
+  employees.findById(postId , (err, post) => {
+          if (err) {
+              return res.status(400).json({ success: false, err })
+          }
+          return res.status(200).json({
+              success: true,
+              post
+          });
+      });
 });
+
 
 module.exports = router;
