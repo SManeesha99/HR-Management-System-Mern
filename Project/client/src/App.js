@@ -7,6 +7,7 @@ import Details from './components/Details';
 import EditEmployee from './components/EditEmployee';
 import Register from './components/Register';
 import Login from './components/Login';
+import Home from './components/Home';
 
 export default class App extends Component {
   render() {
@@ -15,6 +16,7 @@ export default class App extends Component {
         <div className="container1">
           <NavBar />
           <Routes>
+          <Route path="/" exact element={<Home />} />
             <Route path="/details" exact element={<Details />} />
             <Route path="/add" exact element={<AddEmployee />} />
             <Route path="/update/:id" exact element={<EditEmployee />} />

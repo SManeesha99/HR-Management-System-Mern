@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 function Details() {
     const params = useParams();
     const [employee, setEmployee] = useState([]);
-    
+
     useEffect(() => {
         retrievePosts();
     }, []);

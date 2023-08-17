@@ -13,7 +13,7 @@ function Login() {
             .then(result => {
                 console.log(result);
                 if (result.data === "Login Success") {
-                    navigate("/home");
+                    navigate("/details");
                 } else if (result.data === "Password didn't match") {
                     console.log("Password is incorrect");
                 } else if (result.data === "User not registered") {
