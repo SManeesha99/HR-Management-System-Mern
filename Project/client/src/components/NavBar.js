@@ -22,7 +22,7 @@ export default function Navbar() {
                 <a class="nav-link" href="/details">Employee Details</a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="#">Employee Attendance</a>
+                <a class="nav-link" href="/attendance">Employee Attendance</a>
               </li> 
              
               

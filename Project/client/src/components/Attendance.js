@@ -40,8 +40,6 @@ class AdminDelivery extends Component {
         });
     }
 
-    
-
     // edit
     handleChange = (e) => {
         const { name, value } = e.target;
@@ -54,38 +52,35 @@ class AdminDelivery extends Component {
     }
 
     onSave = (id) => {
-    let data = this.state.posts.filter((post) => post._id === id)[0];
-    data.note = this.note;
+        let data = this.state.posts.filter((post) => post._id === id)[0];
+        data.note = this.note;
 
-    axios.put(`/employee/post/${id}`, data).then((res) => {
-        if (res.data.success) {
+        axios.put(`/employee/post/${id}`, data).then((res) => {
+            if (res.data.success) {
+                Swal.fire({
+                    title: 'Updated Successfully!',
+                    text: 'Your changes have been saved.',
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    this.setState({
+                        name: "",
+                        attendance: ""
+                    });
+                });
+            }
+        }).catch((error) => {
             Swal.fire({
-                title: 'Updated Successfully!',
-                text: 'Your changes have been saved.',
-                icon: 'success',
+                title: 'Error!',
+                text: 'An error occurred while updating the post. Please try again later.',
+                icon: 'error',
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'OK'
-            }).then(() => {
-                this.setState({
-                    name: "",
-                    attendance: ""
-                });
             });
-        }
-    }).catch((error) => {
-        Swal.fire({
-            title: 'Error!',
-            text: 'An error occurred while updating the post. Please try again later.',
-            icon: 'error',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'OK'
         });
-    });
-};
+    };
 
-
-
-  
     //search part
     handleSearchKeyChange = (e) => {
         const searchKey = e.currentTarget.value;
@@ -119,18 +114,23 @@ class AdminDelivery extends Component {
         ).length;
     };
 
+
     render() {
         const { searchKey } = this.state;
         const filteredDelivery = this.state.posts.filter((posts) =>
-        posts.name.toLowerCase().includes(searchKey.toLowerCase())
+            posts.name.toLowerCase().includes(searchKey.toLowerCase())
         );
 
+        // Get the date
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString();
 
 
         return (
             <div>
                 <div className='mt-5'>
                     <div className="containerAttendance">
+                        <h3>Today's Date: {formattedDate}</h3>
                         <h3>Available Count: {this.calculateAvailableCount()}</h3>
                         <h3>Not Available Count: {this.calculateNotAvailableCount()}</h3>
                         <form className="form-inline my-2 my-lg-9 ml-auto">
@@ -178,10 +178,6 @@ class AdminDelivery extends Component {
                                                     placeholder={
                                                         posts.attendance
                                                     } /></td>
-
-
-                                            
-
 
                                             <td onClick={
                                                 () => this.onSave(posts._id)
