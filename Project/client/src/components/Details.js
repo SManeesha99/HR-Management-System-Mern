@@ -93,9 +93,6 @@ class Details extends Component {
                                     <th scope="col">NIC</th>
                                     <th scope="col" >Gender</th>
                                     <th scope="col" >Type</th>
-                                    <th scope="col" >Salary</th>
-
-
                                 </thead>
                                 <tbody> {
                                     this.state.employee.map((employee, index) => (
@@ -124,11 +121,7 @@ class Details extends Component {
                                             <td>{
                                                 employee.type
                                             }</td>
-                                            <td>{
-                                                employee.salary
-                                            }</td>
-
-
+                                        
                                             <center>
                                                 <td>
                                                     <a href={`/update/${employee._id}`} className="btn-edit">Update</a>

@@ -14,7 +14,7 @@ class EditEmployee extends Component {
 
     this.state = {
       id: props.params.id,
-      employees: [],
+      employee: [],
       name: "",
       NIC: "",
       email: "",
@@ -32,7 +32,7 @@ class EditEmployee extends Component {
         this.setState({
           employee: res.data.post,
         });
-        console.log(this.state.employees);
+        console.log(this.state.employee);
       }
     });
   }
@@ -53,7 +53,7 @@ class EditEmployee extends Component {
 
     const { name, NIC, email, gender, type } = this.state;
 
-    let data = this.state.employees;
+    let data = this.state.employee;
     data = {
       name: name.length != 0 ? name : data.name,
       NIC: NIC.length != 0 ? NIC : data.NIC,
@@ -97,7 +97,7 @@ class EditEmployee extends Component {
 
   render() {
     const { _id, name, NIC, email, gender, type } =
-      this.state.employees;
+      this.state.employee;
     return (
       <div className="container1">
         <form className="update" onSubmit={this.onSubmit}>
@@ -139,7 +139,7 @@ class EditEmployee extends Component {
             onChange={this.handleChange}
             placeholder={gender}
           >
-            <option value="">--Select Gender--</option>
+            <option value="">{gender}</option>
             <option value="Male">M</option>
             <option value="Female">F</option>
           </select>
@@ -150,9 +150,8 @@ class EditEmployee extends Component {
             value={this.state.type}
             onChange={this.handleChange}
             placeholder={type}
-            required
           >
-            <option value="">--Select Type--</option>
+            <option value="">{type}</option>
             <option value="Associate Software Engineer">E0</option>
             <option value="Software Engineer">E1</option>
             <option value="Senior Software Engineer">E2</option>
