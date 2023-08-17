@@ -1,0 +1,120 @@
+import React, { Component } from 'react';
+import axios from 'axios';
+import { useParams, useLocation } from "react-router-dom";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
+
+function withParams(Component) {
+    return props => <Component params={
+        useParams()
+    } />
+}
+
+class AttendancePrintPreview extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.attendance = "";
+
+        this.state = {
+            id: props.params.id,
+            employee: []
+        };
+
+    }
+
+    componentDidMount() {
+        this.retrievePosts();
+
+    }
+
+    retrievePosts() {
+        axios.get("/employee/post").then(res => {
+            if (res.data.success) {
+                this.setState({ employee: res.data.existingPosts });
+                console.log(this.state.employee)
+            }
+        });
+    }
+
+
+
+    handlePrint = () => {
+        const doc = new jsPDF();
+        const table = document.getElementById("attendanceTable");
+        const tableRows = table.querySelectorAll("tr");
+
+
+        fetch("../images/sprmeLogo.png")
+            .then(response => response.arrayBuffer())
+            .then(logoData => {
+                const logoUrl = URL.createObjectURL(new Blob([logoData]));
+
+
+                doc.addImage(logoUrl, "PNG", 10, 21, 40, 40);
+                doc.text("Sensus Hub", 55, 30);
+                doc.text("Address: Sensus Hub,Boralesgamuwa", 55, 40);
+                doc.text("Phone: 0915676543", 55, 50);
+                doc.text("Email: sensushub@gmail.com", 55, 60);
+                doc.text("Attendance Details", 80, 80);
+
+
+                doc.autoTable({
+                    html: "#attendanceTable",
+                    startY: 90,
+                });
+
+                doc.save("Attendance_Details.pdf");
+            })
+            .catch(error => {
+                console.error("Error loading logo image:", error);
+            });
+    };
+
+
+    render() {
+
+        return (
+            <div>
+                <div className='mt-5'>
+                    <div className="containerPrint">
+                        <div className="add_btn mt-2 mb-2">
+                            <button onClick={this.handlePrint} className="backBtn">Save</button><br />
+                            <h2><b>Sensus Hub</b></h2>
+                            <p>Address: Sensus Hub,Boralesgamuwa</p>
+                            <p>Phone: 0915676543</p>
+                            <p>Email: sensushub@gmail.com</p>
+                            <h3>Contact Table</h3>
+                        </div>
+
+                        <div className="table-responsive">
+                            <table className="table" id="attendanceTable">
+                                <thead>
+                                    <tr className="table-dark">
+                                        <th scope="col"></th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Attendance</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.employee.map((employee, index) => (
+                                        <tr key={index}>
+                                            <th scope="row">{index + 1}</th>
+                                            <td>{employee.name}</td>
+                                            <td>{employee.attendance}</td>
+                                        </tr>
+                                    ))
+                                    } </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default withParams(AttendancePrintPreview);

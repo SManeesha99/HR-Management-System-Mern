@@ -9,6 +9,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
 import Attendance from './components/Attendance';
+import AttendancePrintPreview from './components/AttendancePrintPreview';
 
 export default class App extends Component {
   render() {
@@ -24,6 +25,7 @@ export default class App extends Component {
             <Route path="/register" element={<Register />} />
             <Route path="/login" exact element={<Login />} />
             <Route path="/attendance" exact element={<Attendance />} />
+            <Route path="/printAttendancePreview" exact element={<AttendancePrintPreview />} />
           </Routes>
         </div>
       </BrowserRouter>

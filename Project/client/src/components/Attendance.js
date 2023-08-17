@@ -111,8 +111,8 @@ class AdminDelivery extends Component {
         });
     };
 
-      //count
-      calculateAvailableCount = () => {
+    //count
+    calculateAvailableCount = () => {
         return this.state.employee.filter(
             post => post.attendance === "Available"
         ).length;
@@ -132,18 +132,19 @@ class AdminDelivery extends Component {
             employee.name.toLowerCase().includes(searchKey.toLowerCase())
         );
 
-          // Get the date
-          const currentDate = new Date();
-          const formattedDate = currentDate.toLocaleDateString();
-  
+        // Get the date
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString();
+
         return (
             <div>
                 <div className='mt-5'>
                     <div className="containerAttendance">
-                    <h3>Today's Date: {formattedDate}</h3>
+                        <h3>Today's Date: {formattedDate}</h3>
                         <h3>Available Count: {this.calculateAvailableCount()}</h3>
                         <h3>Not Available Count: {this.calculateNotAvailableCount()}</h3>
-                       
+                        <a href="/printAttendancePreview"><button className='backBtn'>Save as PDF</button></a>
+
                         <form className="form-inline my-2 my-lg-9 ml-auto">
                             <input
                                 className="form-control"
@@ -162,7 +163,7 @@ class AdminDelivery extends Component {
                             </button>
                         </form>
                         <div className="table-responsive">
-                            <table className="table" id="deliveryTable">
+                            <table className="table" id="attendanceTable">
                                 <thead>
                                     <tr className="table-dark">
                                         <th scope="col"></th>
@@ -178,7 +179,7 @@ class AdminDelivery extends Component {
                                             <th scope="row">{index + 1}</th>
                                             <td>{employee.name}</td>
                                             <td>
-                                               {employee.attendance} </td>
+                                                {employee.attendance} </td>
                                             <td>
                                                 <div className="form-check form-check-inline">
                                                     <input
