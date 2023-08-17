@@ -8,6 +8,7 @@ import EditEmployee from './components/EditEmployee';
 import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
+import Attendance from './components/Attendance';
 
 export default class App extends Component {
   render() {
@@ -22,6 +23,7 @@ export default class App extends Component {
             <Route path="/update/:id" exact element={<EditEmployee />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" exact element={<Login />} />
+            <Route path="/attendance" exact element={<Attendance />} />
           </Routes>
         </div>
       </BrowserRouter>
