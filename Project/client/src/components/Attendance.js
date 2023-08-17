@@ -166,7 +166,7 @@ class AdminDelivery extends Component {
                                                         employee.attendance
                                                     } /></td> */}
                                             <td>
-                                                {employee.attendance}<br />
+                                            {employee.attendance}<br/>
                                                 <div className="form-check form-check-inline">
                                                     <input
                                                         className="form-check-input"
