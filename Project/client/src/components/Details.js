@@ -50,6 +50,29 @@ class Details extends Component {
     }
 
 
+    onDelete = (id) => {        
+        Swal.fire({
+            title: 'Are you sure you want to delete this?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#FFB400',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`/employee/post/${id}`).then((res) => {
+                    Swal.fire(
+                        'Deleted!',
+                        'employee has been deleted.',
+                        'success'
+                    )
+                    this.retrievePosts();
+                });
+            }
+        });
+    };
+
+
 
     render() {
         return (
@@ -92,7 +115,7 @@ class Details extends Component {
                                             }</td>
 
                                             <td>{
-                                                employee.id
+                                                employee.NIC
                                             }</td>
                                             <td>{
                                                 employee.gender

@@ -10,7 +10,7 @@ export default class AddEmployee extends Component {
     this.state = {
       employee: [],
       name: "",
-      id: "",
+      NIC: "",
       email: "",
       gender: "",
       type: "",
@@ -31,11 +31,11 @@ export default class AddEmployee extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, id, email, gender, type, salary } = this.state;
+    const { name, NIC, email, gender, type, salary } = this.state;
 
     const data = {
       name: name,
-      id: id,
+      NIC: NIC,
       email: email,
       gender: gender,
       type: type,
@@ -52,7 +52,7 @@ export default class AddEmployee extends Component {
 
         this.setState({
           name: "",
-          id: "",
+          NIC: "",
           email: "",
           gender: "",
           type: "",
@@ -81,7 +81,7 @@ export default class AddEmployee extends Component {
             <label>NIC: </label>
             <input
               type="text"
-              name="id"
+              name="NIC"
               value={this.state.id}
               onChange={this.handleChange}
               required
@@ -109,13 +109,23 @@ export default class AddEmployee extends Component {
             </select>
 
             <label>Type: </label>
-            <input
-              type="tel"
+            {/* <input
+              type="text"
               name="type"
               value={this.state.type}
               onChange={this.handleChange}
-
-            />
+            /> */}
+            <select
+              name="type"
+              value={this.state.type}
+              onChange={this.handleChange}
+              required
+            >
+              <option value="">--Select Type--</option>
+              <option value="Associate Software Engineer">E0</option>
+              <option value="Software Engineer">E1</option>
+              <option value="Senior Software Engineer">E2</option>
+            </select>
 
 
             <label>Salary: </label>
