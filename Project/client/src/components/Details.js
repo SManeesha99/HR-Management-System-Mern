@@ -131,7 +131,7 @@ class Details extends Component {
 
                                             <center>
                                                 <td>
-                                                    <a href={`/employee/edit/${employee._id}`} className="btn-edit">Update</a>
+                                                    <a href={`/update/${employee._id}`} className="btn-edit">Update</a>
                                                 </td>
                                                 <td onClick={
                                                     () => this.onDelete(employee._id)

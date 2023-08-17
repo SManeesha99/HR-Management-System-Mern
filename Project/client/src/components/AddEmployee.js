@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import "./css/form.css";
 import axios from "axios";
 
@@ -14,8 +14,6 @@ export default class AddEmployee extends Component {
       email: "",
       gender: "",
       type: "",
-      salary: "",
-
     };
   }
 
@@ -126,15 +124,6 @@ export default class AddEmployee extends Component {
               <option value="Software Engineer">E1</option>
               <option value="Senior Software Engineer">E2</option>
             </select>
-
-
-            <label>Salary: </label>
-            <input
-              type="number"
-              name="salary"
-              value={this.state.salary}
-              onChange={this.handleChange}
-              required></input>
 
             <center>
               <button className="btn" type="submit">
