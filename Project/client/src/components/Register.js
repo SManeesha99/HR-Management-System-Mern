@@ -11,7 +11,7 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post("register", { name, email, password })
+        axios.post("/register", { name, email, password })
             .then(result => {
                 console.log(result)
                 navigate("/login")
