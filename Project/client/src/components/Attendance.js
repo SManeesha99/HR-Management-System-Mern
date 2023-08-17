@@ -22,6 +22,7 @@ class AdminDelivery extends Component {
             id: props.params.id,
             employee: [],
             searchKey: "",
+            selectedAttendance: {},
         };
 
     }
@@ -55,7 +56,8 @@ class AdminDelivery extends Component {
 
     onSave = (id) => {
         let data = this.state.employee.filter((post) => post._id === id)[0];
-        data.attendance = this.attendance;
+        data.attendance = this.state.selectedAttendance[id] || ""; // Use selectedAttendance
+
 
         axios.put(`/employee/post/${id}`, data).then((res) => {
             if (res.data.success) {
@@ -73,6 +75,18 @@ class AdminDelivery extends Component {
                 });
             }
         });
+    };
+
+    handleChange = (e, employeeId) => {
+        const { name, value } = e.target;
+
+        this.setState((prevState) => ({
+            selectedAttendance: {
+                ...prevState.selectedAttendance,
+                [employeeId]: value,
+            },
+        }));
+        this.attendance = value;
     };
 
 
@@ -159,12 +173,16 @@ class AdminDelivery extends Component {
                                                         name={`attendanceRadio-${employee._id}`}
                                                         id={`availableRadio-${employee._id}`}
                                                         value="Available"
-                                                        checked={this.state.attendance === 'Available'}
-                                                        onChange={this.handleChange}
+                                                        checked={this.state.selectedAttendance[employee._id] === 'Available'}
+                                                        onChange={(e) => this.handleChange(e, employee._id)}
                                                     />
-                                                    <label className="form-check-label" htmlFor={`availableRadio-${employee._id}`}>
+                                                    <label
+                                                        className={`form-check-label ${this.state.selectedAttendance[employee._id] === 'Available' ? 'text-success' : ''}`}
+                                                        htmlFor={`availableRadio-${employee._id}`}
+                                                    >
                                                         Available
                                                     </label>
+
                                                 </div>
                                                 <div className="form-check form-check-inline">
                                                     <input
@@ -173,10 +191,13 @@ class AdminDelivery extends Component {
                                                         name={`attendanceRadio-${employee._id}`}
                                                         id={`notAvailableRadio-${employee._id}`}
                                                         value="Not Available"
-                                                        checked={this.state.attendance === 'Not Available'}
-                                                        onChange={this.handleChange}
+                                                        checked={this.state.selectedAttendance[employee._id] === 'Not Available'}
+                                                        onChange={(e) => this.handleChange(e, employee._id)}
                                                     />
-                                                    <label className="form-check-label" htmlFor={`notAvailableRadio-${employee._id}`}>
+                                                    <label
+                                                        className={`form-check-label ${this.state.selectedAttendance[employee._id] === 'Not Available' ? 'text-success' : ''}`}
+                                                        htmlFor={`availableRadio-${employee._id}`}
+                                                    >
                                                         Not Available
                                                     </label>
                                                 </div>
