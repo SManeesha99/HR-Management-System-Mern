@@ -5,6 +5,8 @@ import NavBar from './components/NavBar';
 import AddEmployee from './components/AddEmployee';
 import Details from './components/Details';
 import EditEmployee from './components/EditEmployee';
+import Register from './components/Register';
+import Login from './components/Login';
 
 export default class App extends Component {
   render() {
@@ -16,6 +18,8 @@ export default class App extends Component {
             <Route path="/details" exact element={<Details />} />
             <Route path="/add" exact element={<AddEmployee />} />
             <Route path="/update/:id" exact element={<EditEmployee />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" exact element={<Login />} />
           </Routes>
         </div>
       </BrowserRouter>
