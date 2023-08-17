@@ -44,6 +44,10 @@ class AttendancePrintPreview extends Component {
         const doc = new jsPDF();
         const table = document.getElementById("attendanceTable");
         const tableRows = table.querySelectorAll("tr");
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleDateString();
+        const presentCount = this.state.employee.filter(employee => employee.attendance === "Available").length;
+        const absentCount = this.state.employee.filter(employee => employee.attendance === "Not Available").length;
 
 
         fetch("../images/sprmeLogo.png")
@@ -57,12 +61,14 @@ class AttendancePrintPreview extends Component {
                 doc.text("Address: Sensus Hub,Boralesgamuwa", 55, 40);
                 doc.text("Phone: 0915676543", 55, 50);
                 doc.text("Email: sensushub@gmail.com", 55, 60);
-                doc.text("Attendance Details", 80, 80);
+                doc.text("Attendance Details - " + formattedDate, 80, 80);
+                doc.text("Today Available: " + presentCount, 10, 110);
+                doc.text("Today Not Available: " + absentCount, 10, 120);
 
 
                 doc.autoTable({
                     html: "#attendanceTable",
-                    startY: 90,
+                    startY: 150,
                 });
 
                 doc.save("Attendance_Details.pdf");
@@ -85,7 +91,7 @@ class AttendancePrintPreview extends Component {
                             <p>Address: Sensus Hub,Boralesgamuwa</p>
                             <p>Phone: 0915676543</p>
                             <p>Email: sensushub@gmail.com</p>
-                            <h3>Contact Table</h3>
+                            <h3>Attendance Details</h3>
                         </div>
 
                         <div className="table-responsive">
