@@ -16,12 +16,13 @@ class AdminDelivery extends Component {
     constructor(props) {
         super(props);
 
-        this.note = "";
+        this.attendance = "";
 
         this.state = {
             id: props.params.id,
-            posts: [],
+            employee: [],
             searchKey: "",
+            selectedAttendance: {},
         };
 
     }
@@ -34,11 +35,13 @@ class AdminDelivery extends Component {
     retrievePosts() {
         axios.get("/employee/post").then(res => {
             if (res.data.success) {
-                this.setState({ posts: res.data.existingPosts });
-                console.log(this.state.posts)
+                this.setState({ employee: res.data.existingPosts });
+                console.log(this.state.employee)
             }
         });
     }
+
+
 
     // edit
     handleChange = (e) => {
@@ -48,12 +51,13 @@ class AdminDelivery extends Component {
             ...this.state,
             [name]: value
         });
-        this.note = value;
+        this.attendance = value;
     }
 
     onSave = (id) => {
-        let data = this.state.posts.filter((post) => post._id === id)[0];
-        data.note = this.note;
+        let data = this.state.employee.filter((post) => post._id === id)[0];
+        data.attendance = this.state.selectedAttendance[id] || ""; // Use selectedAttendance
+
 
         axios.put(`/employee/post/${id}`, data).then((res) => {
             if (res.data.success) {
@@ -61,8 +65,8 @@ class AdminDelivery extends Component {
                     title: 'Updated Successfully!',
                     text: 'Your changes have been saved.',
                     icon: 'success',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'OK'
+                    showConfirmButton: false,
+                    timer: 3000,
                 }).then(() => {
                     this.setState({
                         name: "",
@@ -70,29 +74,35 @@ class AdminDelivery extends Component {
                     });
                 });
             }
-        }).catch((error) => {
-            Swal.fire({
-                title: 'Error!',
-                text: 'An error occurred while updating the post. Please try again later.',
-                icon: 'error',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-            });
         });
     };
+
+    handleChange = (e, employeeId) => {
+        const { name, value } = e.target;
+
+        this.setState((prevState) => ({
+            selectedAttendance: {
+                ...prevState.selectedAttendance,
+                [employeeId]: value,
+            },
+        }));
+        this.attendance = value;
+    };
+
+
 
     //search part
     handleSearchKeyChange = (e) => {
         const searchKey = e.currentTarget.value;
         this.setState({ searchKey });
-        this.filterData(this.state.posts, searchKey);
+        this.filterData(this.state.employee, searchKey);
     };
 
-    filterData(posts, searchkey) {
-        const result = posts.filter((post) =>
+    filterData(employee, searchkey) {
+        const result = employee.filter((post) =>
             post.name.toLowerCase().includes(searchkey.toLowerCase())
         );
-        this.setState({ posts: result });
+        this.setState({ employee: result });
     }
 
     resetSearch = () => {
@@ -101,38 +111,39 @@ class AdminDelivery extends Component {
         });
     };
 
-    //count
-    calculateAvailableCount = () => {
-        return this.state.posts.filter(
+      //count
+      calculateAvailableCount = () => {
+        return this.state.employee.filter(
             post => post.attendance === "Available"
         ).length;
     };
 
     calculateNotAvailableCount = () => {
-        return this.state.posts.filter(
+        return this.state.employee.filter(
             post => post.attendance === "Not Available"
         ).length;
     };
 
 
+
     render() {
         const { searchKey } = this.state;
-        const filteredDelivery = this.state.posts.filter((posts) =>
-            posts.name.toLowerCase().includes(searchKey.toLowerCase())
+        const filteredDelivery = this.state.employee.filter((employee) =>
+            employee.name.toLowerCase().includes(searchKey.toLowerCase())
         );
 
-        // Get the date
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleDateString();
-
-
+          // Get the date
+          const currentDate = new Date();
+          const formattedDate = currentDate.toLocaleDateString();
+  
         return (
             <div>
                 <div className='mt-5'>
                     <div className="containerAttendance">
-                        <h3>Today's Date: {formattedDate}</h3>
+                    <h3>Today's Date: {formattedDate}</h3>
                         <h3>Available Count: {this.calculateAvailableCount()}</h3>
                         <h3>Not Available Count: {this.calculateNotAvailableCount()}</h3>
+                       
                         <form className="form-inline my-2 my-lg-9 ml-auto">
                             <input
                                 className="form-control"
@@ -162,26 +173,58 @@ class AdminDelivery extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.posts.map((posts, index) => (
+                                    {this.state.employee.map((employee, index) => (
                                         <tr key={index}>
                                             <th scope="row">{index + 1}</th>
-                                            <td>{posts.name}</td>
+                                            <td>{employee.name}</td>
                                             <td>
-                                                <input type="text" class="form-control"
-                                                    value={
-                                                        this.state.attendance
-                                                    }
-                                                    onChange={
-                                                        this.handleChange
-                                                    }
-                                                    id="formGroupExampleInput"
-                                                    placeholder={
-                                                        posts.attendance
-                                                    } /></td>
+                                               {employee.attendance} </td>
+                                            <td>
+                                                <div className="form-check form-check-inline">
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name={`attendanceRadio-${employee._id}`}
+                                                        id={`availableRadio-${employee._id}`}
+                                                        value="Available"
+                                                        checked={this.state.selectedAttendance[employee._id] === 'Available'}
+                                                        onChange={(e) => this.handleChange(e, employee._id)}
+                                                    />
+                                                    <label
+                                                        className={`form-check-label ${this.state.selectedAttendance[employee._id] === 'Available' ? 'text-success' : ''}`}
+                                                        htmlFor={`availableRadio-${employee._id}`}
+                                                    >
+                                                        Available
+                                                    </label>
 
-                                            <td onClick={
-                                                () => this.onSave(posts._id)
-                                            }>
+                                                </div>
+                                                <div className="form-check form-check-inline">
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name={`attendanceRadio-${employee._id}`}
+                                                        id={`notAvailableRadio-${employee._id}`}
+                                                        value="Not Available"
+                                                        checked={this.state.selectedAttendance[employee._id] === 'Not Available'}
+                                                        onChange={(e) => this.handleChange(e, employee._id)}
+                                                    />
+                                                    <label
+                                                        className={`form-check-label ${this.state.selectedAttendance[employee._id] === 'Not Available' ? 'text-success' : ''}`}
+                                                        htmlFor={`availableRadio-${employee._id}`}
+                                                    >
+                                                        Not Available
+                                                    </label>
+                                                </div>
+                                            </td>
+
+
+
+                                            <td onClick={() => {
+                                                this.onSave(employee._id);
+                                                setTimeout(() => {
+                                                    window.location.reload();
+                                                }, 1200);
+                                            }}>
                                                 <a className="btn btn-success">
                                                     <i className="fas fa-edit"></i>
                                                 </a>
