@@ -16,13 +16,12 @@ class AdminDelivery extends Component {
     constructor(props) {
         super(props);
 
-        this.attendance = "";
+        this.note = "";
 
         this.state = {
             id: props.params.id,
-            employee: [],
+            posts: [],
             searchKey: "",
-            selectedAttendance: {},
         };
 
     }
@@ -35,13 +34,13 @@ class AdminDelivery extends Component {
     retrievePosts() {
         axios.get("/employee/post").then(res => {
             if (res.data.success) {
-                this.setState({ employee: res.data.existingPosts });
-                console.log(this.state.employee)
+                this.setState({ posts: res.data.existingPosts });
+                console.log(this.state.posts)
             }
         });
     }
 
-
+    
 
     // edit
     handleChange = (e) => {
@@ -51,58 +50,54 @@ class AdminDelivery extends Component {
             ...this.state,
             [name]: value
         });
-        this.attendance = value;
+        this.note = value;
     }
 
     onSave = (id) => {
-        let data = this.state.employee.filter((post) => post._id === id)[0];
-        data.attendance = this.state.selectedAttendance[id] || ""; // Use selectedAttendance
+    let data = this.state.posts.filter((post) => post._id === id)[0];
+    data.note = this.note;
 
-
-        axios.put(`/employee/post/${id}`, data).then((res) => {
-            if (res.data.success) {
-                Swal.fire({
-                    title: 'Updated Successfully!',
-                    text: 'Your changes have been saved.',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 3000,
-                }).then(() => {
-                    this.setState({
-                        name: "",
-                        attendance: ""
-                    });
+    axios.put(`/employee/post/${id}`, data).then((res) => {
+        if (res.data.success) {
+            Swal.fire({
+                title: 'Updated Successfully!',
+                text: 'Your changes have been saved.',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                this.setState({
+                    name: "",
+                    attendance: ""
                 });
-            }
+            });
+        }
+    }).catch((error) => {
+        Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while updating the post. Please try again later.',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
         });
-    };
-
-    handleChange = (e, employeeId) => {
-        const { name, value } = e.target;
-
-        this.setState((prevState) => ({
-            selectedAttendance: {
-                ...prevState.selectedAttendance,
-                [employeeId]: value,
-            },
-        }));
-        this.attendance = value;
-    };
+    });
+};
 
 
 
+  
     //search part
     handleSearchKeyChange = (e) => {
         const searchKey = e.currentTarget.value;
         this.setState({ searchKey });
-        this.filterData(this.state.employee, searchKey);
+        this.filterData(this.state.posts, searchKey);
     };
 
-    filterData(employee, searchkey) {
-        const result = employee.filter((post) =>
+    filterData(posts, searchkey) {
+        const result = posts.filter((post) =>
             post.name.toLowerCase().includes(searchkey.toLowerCase())
         );
-        this.setState({ employee: result });
+        this.setState({ posts: result });
     }
 
     resetSearch = () => {
@@ -111,15 +106,33 @@ class AdminDelivery extends Component {
         });
     };
 
+    //count
+    calculateAvailableCount = () => {
+        return this.state.posts.filter(
+            post => post.attendance === "Available"
+        ).length;
+    };
+
+    calculateNotAvailableCount = () => {
+        return this.state.posts.filter(
+            post => post.attendance === "Not Available"
+        ).length;
+    };
+
     render() {
         const { searchKey } = this.state;
-        const filteredDelivery = this.state.employee.filter((employee) =>
-            employee.name.toLowerCase().includes(searchKey.toLowerCase())
+        const filteredDelivery = this.state.posts.filter((posts) =>
+        posts.name.toLowerCase().includes(searchKey.toLowerCase())
         );
+
+
+
         return (
             <div>
                 <div className='mt-5'>
-                    <div className="container">
+                    <div className="containerAttendance">
+                        <h3>Available Count: {this.calculateAvailableCount()}</h3>
+                        <h3>Not Available Count: {this.calculateNotAvailableCount()}</h3>
                         <form className="form-inline my-2 my-lg-9 ml-auto">
                             <input
                                 className="form-control"
@@ -149,11 +162,11 @@ class AdminDelivery extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.state.employee.map((employee, index) => (
+                                    {this.state.posts.map((posts, index) => (
                                         <tr key={index}>
                                             <th scope="row">{index + 1}</th>
-                                            <td>{employee.name}</td>
-                                            {/* <td>
+                                            <td>{posts.name}</td>
+                                            <td>
                                                 <input type="text" class="form-control"
                                                     value={
                                                         this.state.attendance
@@ -163,55 +176,16 @@ class AdminDelivery extends Component {
                                                     }
                                                     id="formGroupExampleInput"
                                                     placeholder={
-                                                        employee.attendance
-                                                    } /></td> */}
-                                            <td>
-                                            {employee.attendance}<br/>
-                                                <div className="form-check form-check-inline">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name={`attendanceRadio-${employee._id}`}
-                                                        id={`availableRadio-${employee._id}`}
-                                                        value="Available"
-                                                        checked={this.state.selectedAttendance[employee._id] === 'Available'}
-                                                        onChange={(e) => this.handleChange(e, employee._id)}
-                                                    />
-                                                    <label
-                                                        className={`form-check-label ${this.state.selectedAttendance[employee._id] === 'Available' ? 'text-success' : ''}`}
-                                                        htmlFor={`availableRadio-${employee._id}`}
-                                                    >
-                                                        Available
-                                                    </label>
-
-                                                </div>
-                                                <div className="form-check form-check-inline">
-                                                    <input
-                                                        className="form-check-input"
-                                                        type="radio"
-                                                        name={`attendanceRadio-${employee._id}`}
-                                                        id={`notAvailableRadio-${employee._id}`}
-                                                        value="Not Available"
-                                                        checked={this.state.selectedAttendance[employee._id] === 'Not Available'}
-                                                        onChange={(e) => this.handleChange(e, employee._id)}
-                                                    />
-                                                    <label
-                                                        className={`form-check-label ${this.state.selectedAttendance[employee._id] === 'Not Available' ? 'text-success' : ''}`}
-                                                        htmlFor={`availableRadio-${employee._id}`}
-                                                    >
-                                                        Not Available
-                                                    </label>
-                                                </div>
-                                            </td>
+                                                        posts.attendance
+                                                    } /></td>
 
 
+                                            
 
-                                            <td onClick={() => {
-                                                this.onSave(employee._id);
-                                                setTimeout(() => {
-                                                    window.location.reload();
-                                                }, 1200);
-                                            }}>
+
+                                            <td onClick={
+                                                () => this.onSave(posts._id)
+                                            }>
                                                 <a className="btn btn-success">
                                                     <i className="fas fa-edit"></i>
                                                 </a>
