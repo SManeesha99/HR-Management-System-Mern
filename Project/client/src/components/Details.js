@@ -38,19 +38,7 @@ class Details extends Component {
         });
     }
 
-
-    handleChange = (e) => {
-        const { name, value } = e.target;
-
-        this.setState({
-            ...this.state,
-            [name]: value
-        });
-        this.status = value;
-    }
-
-
-    onDelete = (id) => {        
+    onDelete = (id) => {
         Swal.fire({
             title: 'Are you sure you want to delete this?',
             icon: 'warning',
@@ -121,7 +109,7 @@ class Details extends Component {
                                             <td>{
                                                 employee.type
                                             }</td>
-                                        
+
                                             <center>
                                                 <td>
                                                     <a href={`/update/${employee._id}`} className="btn-edit">Update</a>
