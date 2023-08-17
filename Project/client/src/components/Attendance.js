@@ -56,15 +56,15 @@ class AdminDelivery extends Component {
     onSave = (id) => {
         let data = this.state.employee.filter((post) => post._id === id)[0];
         data.attendance = this.attendance;
-    
+
         axios.put(`/employee/post/${id}`, data).then((res) => {
             if (res.data.success) {
                 Swal.fire({
                     title: 'Updated Successfully!',
                     text: 'Your changes have been saved.',
                     icon: 'success',
-                    showConfirmButton: false, // Hide the "OK" button
-                    timer: 3000, // Automatically close after 3 seconds
+                    showConfirmButton: false,
+                    timer: 3000,
                 }).then(() => {
                     this.setState({
                         name: "",
@@ -74,7 +74,7 @@ class AdminDelivery extends Component {
             }
         });
     };
-    
+
 
 
     //search part
@@ -106,7 +106,7 @@ class AdminDelivery extends Component {
             <div>
                 <div className='mt-5'>
                     <div className="container">
-                       <form className="form-inline my-2 my-lg-9 ml-auto">
+                        <form className="form-inline my-2 my-lg-9 ml-auto">
                             <input
                                 className="form-control"
                                 type="search"
@@ -139,7 +139,7 @@ class AdminDelivery extends Component {
                                         <tr key={index}>
                                             <th scope="row">{index + 1}</th>
                                             <td>{employee.name}</td>
-                                            <td>
+                                            {/* <td>
                                                 <input type="text" class="form-control"
                                                     value={
                                                         this.state.attendance
@@ -150,16 +150,44 @@ class AdminDelivery extends Component {
                                                     id="formGroupExampleInput"
                                                     placeholder={
                                                         employee.attendance
-                                                    } /></td>
-
-
+                                                    } /></td> */}
+                                            <td>
+                                                <div className="form-check form-check-inline">
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name={`attendanceRadio-${employee._id}`}
+                                                        id={`availableRadio-${employee._id}`}
+                                                        value="Available"
+                                                        checked={this.state.attendance === 'Available'}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <label className="form-check-label" htmlFor={`availableRadio-${employee._id}`}>
+                                                        Available
+                                                    </label>
+                                                </div>
+                                                <div className="form-check form-check-inline">
+                                                    <input
+                                                        className="form-check-input"
+                                                        type="radio"
+                                                        name={`attendanceRadio-${employee._id}`}
+                                                        id={`notAvailableRadio-${employee._id}`}
+                                                        value="Not Available"
+                                                        checked={this.state.attendance === 'Not Available'}
+                                                        onChange={this.handleChange}
+                                                    />
+                                                    <label className="form-check-label" htmlFor={`notAvailableRadio-${employee._id}`}>
+                                                        Not Available
+                                                    </label>
+                                                </div>
+                                            </td>
 
 
 
                                             <td onClick={() => {
                                                 this.onSave(employee._id);
                                                 setTimeout(() => {
-                                                    window.location.reload(); 
+                                                    window.location.reload();
                                                 }, 1200);
                                             }}>
                                                 <a className="btn btn-success">
