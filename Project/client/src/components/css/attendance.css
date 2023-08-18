@@ -98,7 +98,7 @@
     color: white;
     padding: 5px 15px;
     cursor: pointer;
-    
+
 }
 
 .btn-save:hover {
@@ -111,4 +111,11 @@
     .table td {
         padding: 8px;
     }
+}
+
+.main-top {
+    background-color: #1e90ff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px;
 }
