@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 function Details() {
     const params = useParams();
     const [employee, setEmployee] = useState([]);
-
+   
     useEffect(() => {
         retrievePosts();
     }, []);
@@ -42,6 +42,7 @@ function Details() {
         });
     };
 
+  
 
     return (
         <div>
@@ -52,6 +53,9 @@ function Details() {
                         <div class="main-top">
                             <h1>Employee List</h1>
                         </div>
+                    
+                    
+
                         <table class="table" id="EmployeeTable">
                             <thead>
                                 <tr className="table-dark">
