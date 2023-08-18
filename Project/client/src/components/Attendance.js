@@ -140,29 +140,50 @@ class AdminDelivery extends Component {
             <div>
                 <div className='mt-5'>
                     <div className="containerAttendance">
-                        <h3>Today's Date: {formattedDate}</h3>
-                        <h3>Available Count: {this.calculateAvailableCount()}</h3>
-                        <h3>Not Available Count: {this.calculateNotAvailableCount()}</h3>
-                        <a href="/printAttendancePreview"><button className='backBtn'>Save as PDF</button></a>
+                        <div className="add_btn mt-2 mb-2">
+                            <h3>Today's Date: {formattedDate}</h3>
 
-                        <form className="form-inline my-2 my-lg-9 ml-auto">
-                            <input
-                                className="form-control"
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"
-                                value={searchKey}
-                                onChange={this.handleSearchKeyChange}
-                            />
-                            <button
-                                className="btn btn-outline-success my-2 my-sm-0"
-                                type="button"
-                                onClick={this.resetSearch}
-                            >
-                                Reset
-                            </button>
-                        </form>
+                            <a href="/printAttendancePreview"><button className='backBtn'>Save as PDF</button></a>
+
+                            <div className="row">
+                                <div className="col-sm-4">
+                                    <div className="card1" style={{ backgroundColor: 'white', border: '2px solid orange', borderRadius: '10px', width: '200px', height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                        <div className="card-body1">
+                                            <h5 className="card-title" style={{ textAlign: 'center' }}>Available Count:</h5>
+                                            <h5 className="card-text" style={{ textAlign: 'center' }}>{this.calculateAvailableCount()}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4">
+                                    <div className="card1" style={{ backgroundColor: 'white', border: '2px solid orange', borderRadius: '10px', width: '200px', height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                        <div className="card-body1">
+                                            <h5 className="card-title" style={{ textAlign: 'center' }}>Not Available Count:</h5>
+                                            <h5 className="card-text" style={{ textAlign: 'center' }}>{this.calculateNotAvailableCount()}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <form className="form-inline my-2 my-lg-9 ml-auto">
+                                <input
+                                    className="form-control"
+                                    type="search"
+                                    placeholder="Search"
+                                    aria-label="Search"
+                                    value={searchKey}
+                                    onChange={this.handleSearchKeyChange}
+                                />
+                                <button
+                                    className="btn btn-outline-success my-2 my-sm-0"
+                                    type="button"
+                                    onClick={this.resetSearch}
+                                >
+                                    Reset
+                                </button>
+                            </form>
+                        </div>
                         <div className="table-responsive">
+
+                            <br />
                             <table className="table" id="attendanceTable">
                                 <thead>
                                     <tr className="table-dark">

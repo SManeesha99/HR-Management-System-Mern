@@ -60,3 +60,18 @@ input, select, textarea {
    align-items: center;
    width: 450px;
 }
+
+
+.backBtn{
+  background-color: black;
+  color: #FFB400;
+  padding: 10px 10px 10px 10px;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  margin-right: 10px;
+  
+}
+
+
