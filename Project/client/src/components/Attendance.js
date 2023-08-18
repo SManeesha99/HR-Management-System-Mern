@@ -144,27 +144,31 @@ class Attendance extends Component {
                         <div className="add_btn mt-2 mb-2">
                             <h3>Today's Date: {formattedDate}</h3>
 
-                            <a href="/printAttendancePreview"><button className='backBtn'>Save as PDF</button></a>
-
+                           
                             <div className="row">
                                 <div className="col-sm-4">
-                                    <div className="card1" style={{ backgroundColor: 'white', border: '2px solid orange', borderRadius: '10px', width: '200px', height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <div className="card1">
                                         <div className="card-body1">
-                                            <h5 className="card-title" style={{ textAlign: 'center' }}>Available Count:</h5>
-                                            <h5 className="card-text" style={{ textAlign: 'center' }}>{this.calculateAvailableCount()}</h5>
+                                            <h5 className="card-title">Available Count:</h5>
+                                            <h5 className="card-text">{this.calculateAvailableCount()}</h5>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-sm-4">
-                                    <div className="card1" style={{ backgroundColor: 'white', border: '2px solid orange', borderRadius: '10px', width: '200px', height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                    <div className="card1">
                                         <div className="card-body1">
-                                            <h5 className="card-title" style={{ textAlign: 'center' }}>Not Available Count:</h5>
-                                            <h5 className="card-text" style={{ textAlign: 'center' }}>{this.calculateNotAvailableCount()}</h5>
+                                            <h5 className="card-title">Not Available Count:</h5>
+                                            <h5 className="card-text">{this.calculateNotAvailableCount()}</h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <form className="form-inline my-2 my-lg-9 ml-auto">
+                           
+                        </div>
+                        <div className="table-responsive">
+                            
+                        <a href="/printAttendancePreview"><button className='btn-save'>Save as PDF</button></a>
+                        <form className="form-inline my-2 my-lg-9 ml-auto">
                                 <input
                                     className="form-control"
                                     type="search"
@@ -181,10 +185,6 @@ class Attendance extends Component {
                                     Reset
                                 </button>
                             </form>
-                        </div>
-                        <div className="table-responsive">
-
-                            <br />
                             <table className="table" id="attendanceTable">
                                 <thead>
                                     <tr>
