@@ -11,7 +11,7 @@ function withParams(Component) {
     } />
 }
 
-class AdminDelivery extends Component {
+class Attendance extends Component {
 
     constructor(props) {
         super(props);
@@ -268,4 +268,4 @@ class AdminDelivery extends Component {
     }
 }
 
-export default withParams(AdminDelivery);
+export default withParams(Attendance);

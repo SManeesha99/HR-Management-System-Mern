@@ -50,7 +50,7 @@ class AttendancePrintPreview extends Component {
         const absentCount = this.state.employee.filter(employee => employee.attendance === "Not Available").length;
 
 
-        fetch("../images/sprmeLogo.png")
+        fetch("../images/logo.png")
             .then(response => response.arrayBuffer())
             .then(logoData => {
                 const logoUrl = URL.createObjectURL(new Blob([logoData]));
