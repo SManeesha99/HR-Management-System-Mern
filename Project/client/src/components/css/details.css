@@ -7,15 +7,13 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
-.main {
-    margin-top: 20px;
-}
 
 .main-top {
     background-color: #1e90ff;
     color: #fff;
     padding: 10px;
     border-radius: 10px 10px 10px 10px;
+    width: 8500px;
 }
 
 .table {

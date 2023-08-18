@@ -142,9 +142,12 @@ class Attendance extends Component {
                 <div className='mt-5'>
                     <div className="containerAttendance">
                         <div className="add_btn mt-2 mb-2">
+                       
                         <div className='main-top'>
                             <h1>Employee List</h1>
-                        </div><br/>
+                        </div>
+                        
+                        
                             <h3>Today's Date: {formattedDate}</h3>
                             
                             <div className="row">
