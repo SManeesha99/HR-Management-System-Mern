@@ -4,6 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import Swal from 'sweetalert2';
+import './css/attendance.css';
 
 function withParams(Component) {
     return props => <Component params={
@@ -186,8 +187,8 @@ class Attendance extends Component {
                             <br />
                             <table className="table" id="attendanceTable">
                                 <thead>
-                                    <tr className="table-dark">
-                                        <th scope="col"></th>
+                                    <tr>
+                                        <th scope="col">No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Attendance</th>
                                         <th></th>

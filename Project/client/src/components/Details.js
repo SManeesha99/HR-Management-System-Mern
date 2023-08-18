@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import './css/details.css';
 
 function Details() {
     const params = useParams();
     const [employee, setEmployee] = useState([]);
-   
+
     useEffect(() => {
         retrievePosts();
     }, []);
 
     const retrievePosts = () => {
-        axios.get("/employee/post").then(res => {
+        axios.get('/employee/post').then((res) => {
             if (res.data.success) {
                 setEmployee(res.data.existingPosts);
-                console.log(employee);
             }
         });
-    }
+    };
 
     const onDelete = (id) => {
         Swal.fire({
@@ -27,70 +27,64 @@ function Details() {
             showCancelButton: true,
             confirmButtonColor: '#FFB400',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(`/employee/post/${id}`).then((res) => {
-                    Swal.fire(
-                        'Deleted!',
-                        'Employee has been deleted.',
-                        'success'
-                    )
+                    Swal.fire('Deleted!', 'Employee has been deleted.', 'success');
                     retrievePosts();
                 });
             }
         });
     };
 
-  
-
     return (
         <div>
             <div className='mt-5'>
-                <div className="container3">
-                    <div className="add_btn mt-2 mb-2"></div>
-                    <section class="main">
-                        <div class="main-top">
+                <div className='container3'>
+                    <div className='add_btn mt-2 mb-2'></div>
+                    <section className='main'>
+                        <div className='main-top'>
                             <h1>Employee List</h1>
                         </div>
-                    
-                    
-
-                        <table class="table" id="EmployeeTable">
+                        <table className='table' id='EmployeeTable'>
                             <thead>
-                                <tr className="table-dark">
-                                <th scope="col" >No.</th>
-                                <th scope="col" >Name</th>
-                                <th scope="col" >Email</th>
-                                <th scope="col">NIC</th>
-                                <th scope="col" >Gender</th>
-                                <th scope="col" >Type</th>
-                                <th></th>
+                                <tr >
+                                    <th scope='col'>No.</th>
+                                    <th scope='col'>Name</th>
+                                    <th scope='col'>Email</th>
+                                    <th scope='col'>NIC</th>
+                                    <th scope='col'>Gender</th>
+                                    <th scope='col'>Type</th>
+                                    <th scope='col'></th>
+                                    <th scope='col'></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {employee.map((employee, index) => (
                                     <tr key={index}>
-                                        <th scope="row">{index + 1}</th>
+                                        <th scope='row'>{index + 1}</th>
                                         <td>{employee.name}</td>
                                         <td>{employee.email}</td>
                                         <td>{employee.NIC}</td>
                                         <td>{employee.gender}</td>
                                         <td>{employee.type}</td>
-                                        <center>
-                                            <td>
-                                                <a href={`/update/${employee._id}`} className="btn-edit">Update</a>
-                                            </td>
-                                            <td onClick={() => onDelete(employee._id)}>
-                                                <a className="btn-delete">Delete</a>
-                                            </td>
-                                        </center>
+                                        <td>
+                                            <a href={`/update/${employee._id}`} className='btn-edit'>
+                                                Update
+                                            </a>
+                                        </td>
+                                        <td onClick={() => onDelete(employee._id)}>
+                                            <a className='btn-delete'>Delete</a>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                        <a href="/add">
-                            <button className="btn" type="submit">Add Employee</button>
+                        <a href='/add'>
+                            <button className='btn' type='submit'>
+                                Add Employee
+                            </button>
                         </a>
                     </section>
                 </div>

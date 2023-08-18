@@ -1,5 +1,5 @@
 .container{
-    background-color: rgb(236, 193, 140);
+    background-color:#1e90ff;
     border-radius: 10px;
     height: 100px;
 }
@@ -15,7 +15,7 @@
     margin-right: 20px;
     background-color: rgb(0, 0, 0);
     border-radius: 10px;
-    color: rgb(255, 255, 255);
+    color: rgb(87, 117, 140)
 
 }
 
