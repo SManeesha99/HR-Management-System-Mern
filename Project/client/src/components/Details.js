@@ -42,6 +42,7 @@ function Details() {
         });
     };
 
+
     return (
         <div>
             <div className='mt-5'>
@@ -53,12 +54,15 @@ function Details() {
                         </div>
                         <table class="table" id="EmployeeTable">
                             <thead>
+                                <tr className="table-dark">
                                 <th scope="col" >No.</th>
                                 <th scope="col" >Name</th>
                                 <th scope="col" >Email</th>
                                 <th scope="col">NIC</th>
                                 <th scope="col" >Gender</th>
                                 <th scope="col" >Type</th>
+                                <th></th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {employee.map((employee, index) => (
