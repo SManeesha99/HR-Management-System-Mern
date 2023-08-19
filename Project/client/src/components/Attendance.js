@@ -141,15 +141,15 @@ class Attendance extends Component {
             <div>
                 <div className='mt-5'>
                     <div className="containerAttendance">
-                        <div className="add_btn mt-2 mb-2">
-                       
-                        <div className='main-top'>
-                            <h1>Employee List</h1>
-                        </div>
                         
-                        
-                            <h3>Today's Date: {formattedDate}</h3>
-                            
+                            <section></section>
+                            <div className='main-top'>
+                                <h1>Employee Attendance</h1>
+                            </div>
+
+                            <div className='date'>
+                                <h3>Today's Date: {formattedDate}</h3>
+                            </div>
                             <div className="row">
                                 <div className="col-sm-4">
                                     <div className="card1">
@@ -168,12 +168,12 @@ class Attendance extends Component {
                                     </div>
                                 </div>
                             </div>
-                           
-                        </div>
+
+                        
                         <div className="table-responsive">
-                            
-                        <a href="/printAttendancePreview"><button className='btn-save'>Save as PDF</button></a>
-                        <form className="form-inline my-2 my-lg-9 ml-auto">
+
+                            <a href="/printAttendancePreview"><button className='btn-save'>Save as PDF</button></a>
+                            <form className="form-inline my-2 my-lg-9 ml-auto">
                                 <input
                                     className="form-control"
                                     type="search"
@@ -268,6 +268,7 @@ class Attendance extends Component {
                     </div>
                 </div>
             </div>
+
         )
     }
 }
