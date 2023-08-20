@@ -1,20 +1,19 @@
-import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import "./css/home.css";
 
 function Home() {
-
-
-
     return (
-        <div>
-            <a href="/register">
-                <button>Login as a HR Department</button></a>
+        <div className="containerHome">
+            <div className="button-container">
+                <a href="/register" className="button">
+                    Login as HR Department
+                </a>
 
-            <a href="#">
-                <button>Login as a Finance Department</button></a>
+                <a href="#" className="button">
+                    Login as Finance Department
+                </a>
+            </div>
         </div>
-    )
+    );
 }
 
-export default Home
+export default Home;
