@@ -1,77 +1,62 @@
 
-input, select, textarea {
-    display: block;
-    font-size: 1.2rem;
-    color: var(--primary);
-   
-    
-  }
-  label{
-    display: block;
-    font-size: 1.2rem;
-    color: var(--primary);
-    font-weight: bold;
-  }
-  input , select, textarea {
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    width: 40%;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    box-sizing: border-box;
-
-    
-  }
-  form button {
-    background: var(--primary);
-    border: 0;
-    color: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  div.error {
-    padding: 10px;
-    background: #ffefef;
-    border: 1px solid var(--error);
-    color: var(--error);
-    border-radius: 4px;
-    margin: 20px 0;
-  }
-
-  h3{
-    
-    font-weight: bold;
-    color: var(--primary);
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 30px;
-  }
-
-  .containerForm{
-     margin-left: 410px;
-    /*margin-top: 50px;
-    margin-bottom: 30px;
-    display: flex; */
-    border: 1px solid #000000;
-    border-radius: 15px;
-   align-items: center;
-   width: 450px;
+.containerForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-
-.backBtn{
-  background-color: black;
-  color: #FFB400;
-  padding: 10px 10px 10px 10px;
-  font-size: 1.2rem;
-  margin-top: 10px;
-  margin-bottom: 25px;
+.create {
+  background-color: #f4f4f4;
+  padding: 20px;
   border-radius: 10px;
-  margin-right: 10px;
-  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 400px;
 }
 
+h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+select {
+  appearance: none;
+  background-color: white;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 18px;
+}
+
+button.btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.btn:hover {
+  background-color: #0056b3;
+}
+
+.center {
+  text-align: center;
+}

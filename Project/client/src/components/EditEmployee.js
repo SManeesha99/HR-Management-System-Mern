@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
+import "./css/form.css";
 
 function EditEmployee() {
   const { id } = useParams();
@@ -81,8 +82,8 @@ function EditEmployee() {
   };
 
   return (
-    <div className="container1">
-      <form className="update" onSubmit={onSubmit}>
+    <div className="containerForm">
+      <form className="create" onSubmit={onSubmit}>
         <h3>Update Employee</h3>
 
         <label>Name: </label>
