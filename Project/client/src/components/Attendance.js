@@ -149,7 +149,7 @@ class Attendance extends Component {
                             <h3>Today's Date: {formattedDate}</h3>
                         </div>
                         <div className="row">
-                            <div className="col-sm-4">
+                            <div className="col-sm-2">
                                 <div className="card1">
                                     <div className="card-body1">
                                         <h5 className="card-title">Available Count:</h5>

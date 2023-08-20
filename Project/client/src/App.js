@@ -10,15 +10,19 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Attendance from './components/Attendance';
 import AttendancePrintPreview from './components/AttendancePrintPreview';
+import { Helmet } from "react-helmet";
 
 export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="container1">
+          <Helmet>
+            <title>Sensus Hub</title>
+          </Helmet>
           <NavBar />
           <Routes>
-          <Route path="/" exact element={<Home />} />
+            <Route path="/" exact element={<Home />} />
             <Route path="/details" exact element={<Details />} />
             <Route path="/add" exact element={<AddEmployee />} />
             <Route path="/update/:id" exact element={<EditEmployee />} />
