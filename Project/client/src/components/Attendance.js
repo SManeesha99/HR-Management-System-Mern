@@ -141,35 +141,33 @@ class Attendance extends Component {
             <div>
                 <div className='mt-5'>
                     <div className="containerAttendance">
-                        
-                            <section></section>
-                            <div className='main-top'>
-                                <h1>Employee Attendance</h1>
-                            </div>
+                        <div className='main-top'>
+                            <h1>Employee Attendance</h1>
+                        </div>
 
-                            <div className='date'>
-                                <h3>Today's Date: {formattedDate}</h3>
-                            </div>
-                            <div className="row">
-                                <div className="col-sm-4">
-                                    <div className="card1">
-                                        <div className="card-body1">
-                                            <h5 className="card-title">Available Count:</h5>
-                                            <h5 className="card-text">{this.calculateAvailableCount()}</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4">
-                                    <div className="card1">
-                                        <div className="card-body1">
-                                            <h5 className="card-title">Not Available Count:</h5>
-                                            <h5 className="card-text">{this.calculateNotAvailableCount()}</h5>
-                                        </div>
+                        <div className='date'>
+                            <h3>Today's Date: {formattedDate}</h3>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-4">
+                                <div className="card1">
+                                    <div className="card-body1">
+                                        <h5 className="card-title">Available Count:</h5>
+                                        <h5 className="card-text">{this.calculateAvailableCount()}</h5>
                                     </div>
                                 </div>
                             </div>
+                            <div className="col-sm-4">
+                                <div className="card1">
+                                    <div className="card-body1">
+                                        <h5 className="card-title">Not Available Count:</h5>
+                                        <h5 className="card-text">{this.calculateNotAvailableCount()}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        
+
                         <div className="table-responsive">
 
                             <a href="/printAttendancePreview"><button className='btn-save'>Save as PDF</button></a>

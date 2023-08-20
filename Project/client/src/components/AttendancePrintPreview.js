@@ -84,25 +84,26 @@ class AttendancePrintPreview extends Component {
         return (
             <div>
                 <div className='mt-5'>
-                    <div className="containerPrint">
+                    <div className="containerAttendance">
+                        <button onClick={this.handlePrint} className="backBtn">Save</button><br />
                         <div className="add_btn mt-2 mb-2">
-                            <button onClick={this.handlePrint} className="backBtn">Save</button><br />
-                            <h2><b>Sensus Hub</b></h2>
-                            <p>Address: Sensus Hub,Boralesgamuwa</p>
-                            <p>Phone: 0915676543</p>
-                            <p>Email: sensushub@gmail.com</p>
-                            <h3>Attendance Details</h3>
+
+                            <div className="row">
+                                <h2><b>Sensus Hub</b></h2>
+                                <p>Address: Sensus Hub,Boralesgamuwa</p>
+                                <p>Phone: 0915676543</p>
+                                <p>Email: sensushub@gmail.com</p>
+                                <h3>Attendance Details</h3>
+                            </div>
                         </div>
 
                         <div className="table-responsive">
                             <table className="table" id="attendanceTable">
                                 <thead>
-                                    <tr className="table-dark">
-                                        <th scope="col"></th>
+                                    <tr>
+                                        <th scope="col">No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Attendance</th>
-                                        <th></th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
