@@ -23,13 +23,13 @@ const leaveSchema = new mongoose.Schema({
         type: String,
         default: 'Not Available',
     },
-    chaeckIn:{
-        type: Date,
+    checkIn: {
+        type: String,
     },
-    chechOut:{
-        type: Date,
+    checkOut: {
+        type: String,
     }
-    
+
 
 });
 

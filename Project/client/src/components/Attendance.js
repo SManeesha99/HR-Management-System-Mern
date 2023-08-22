@@ -18,14 +18,15 @@ class Attendance extends Component {
         super(props);
 
         this.attendance = "";
+        this.checkIn = "";
+        this.checkOut = "";
+
 
         this.state = {
             id: props.params.id,
             employee: [],
             searchKey: "",
             selectedAttendance: {},
-            selectedCheckIn: {},
-            selectedCheckOut: {},
         };
 
     }
@@ -57,11 +58,32 @@ class Attendance extends Component {
         this.attendance = value;
     }
 
+    handleCheckInChange = (e) => {
+        const { name, value } = e.target;
+
+        this.setState({
+            ...this.state,
+            [name]: value
+        });
+        this.checkIn = value;
+    }
+
+    handleCheckOutChange = (e) => {
+        const { name, value } = e.target;
+
+        this.setState({
+            ...this.state,
+            [name]: value
+        });
+        this.checkOut = value;
+    }
+
+
     onSave = (id) => {
         let data = this.state.employee.filter((post) => post._id === id)[0];
-        data.attendance = this.state.selectedAttendance[id] || ""; 
-        data.checkIn = this.state.selectedCheckIn[id] || "";
-        data.checkOut = this.state.selectedCheckOut[id] || "";
+        data.attendance = this.state.selectedAttendance[id] || "";
+        data.checkIn = this.checkIn;
+        data.checkOut = this.checkOut;
 
 
         axios.put(`/employee/post/${id}`, data).then((res) => {
@@ -89,14 +111,6 @@ class Attendance extends Component {
             selectedAttendance: {
                 ...prevState.selectedAttendance,
                 [employeeId]: value,
-            },
-            selectedCheckIn: {
-                ...prevState.selectedCheckIn,
-                [employeeId]: prevState.selectedCheckIn[employeeId] || "",
-            },
-            selectedCheckOut: {
-                ...prevState.selectedCheckOut,
-                [employeeId]: prevState.selectedCheckOut[employeeId] || "",
             },
         }));
         this.attendance = value;
@@ -137,28 +151,7 @@ class Attendance extends Component {
         ).length;
     };
 
-    handleCheckInChange = (e, employeeId) => {
-        const { value } = e.target;
-    
-        this.setState((prevState) => ({
-            selectedCheckIn: {
-                ...prevState.selectedCheckIn,
-                [employeeId]: value,
-            },
-        }));
-    };
-    
-    handleCheckOutChange = (e, employeeId) => {
-        const { value } = e.target;
-    
-        this.setState((prevState) => ({
-            selectedCheckOut: {
-                ...prevState.selectedCheckOut,
-                [employeeId]: value,
-            },
-        }));
-    };
-    
+
 
     render() {
         const { searchKey } = this.state;
@@ -239,24 +232,29 @@ class Attendance extends Component {
                                             <th scope="row">{index + 1}</th>
                                             <td>{employee.name}</td>
                                             <td>{employee.attendance} </td>
-                                            <td> <div className="form-group">
-                                                <input
-                                                    type="time"
-                                                    className="form-control"
-                                                    placeholder="Check-In"
-                                                    value={this.state.selectedCheckIn[employee._id] || ""}
-                                                    onChange={(e) => this.handleCheckInChange(e, employee._id)}
+
+                                            <td>{employee.checkIn}
+                                                <input type="time" class="form-control"
+                                                    value={
+                                                        this.state.checkIn
+                                                    }
+                                                    onChange={
+                                                        this.handleCheckInChange
+                                                    }
+                                                    id="formGroupExampleInput"
+                                                /></td>
+
+                                            <td>{employee.checkOut}
+                                                <input type="time" class="form-control"
+                                                    value={
+                                                        this.state.checkOut
+                                                    }
+                                                    onChange={
+                                                        this.handleCheckOutChange
+                                                    }
+                                                    id="formGroupExampleInput"
                                                 />
-                                            </div></td>
-                                            <td><div className="form-group">
-                                                <input
-                                                    type="time"
-                                                    className="form-control"
-                                                    placeholder="Check-Out"
-                                                    value={this.state.selectedCheckOut[employee._id] || ""}
-                                                    onChange={(e) => this.handleCheckOutChange(e, employee._id)}
-                                                />
-                                            </div></td>
+                                            </td>
                                             <td>
                                                 <div className="form-check form-check-inline">
                                                     <input
