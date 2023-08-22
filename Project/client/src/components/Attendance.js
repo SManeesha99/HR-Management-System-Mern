@@ -47,7 +47,7 @@ class Attendance extends Component {
 
 
 
-    // edit
+    // edit attendance
     handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -58,6 +58,7 @@ class Attendance extends Component {
         this.attendance = value;
     }
 
+    //edit check in
     handleCheckInChange = (e) => {
         const { name, value } = e.target;
 
@@ -68,6 +69,7 @@ class Attendance extends Component {
         this.checkIn = value;
     }
 
+    //edit check out
     handleCheckOutChange = (e) => {
         const { name, value } = e.target;
 

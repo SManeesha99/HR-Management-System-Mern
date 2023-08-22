@@ -11,6 +11,7 @@ import Home from './components/Home';
 import Attendance from './components/Attendance';
 import AttendancePrintPreview from './components/AttendancePrintPreview';
 import { Helmet } from "react-helmet";
+import MonthlyReport from './components/MonthlyReport';
 
 export default class App extends Component {
   render() {
@@ -30,6 +31,7 @@ export default class App extends Component {
             <Route path="/login" exact element={<Login />} />
             <Route path="/attendance" exact element={<Attendance />} />
             <Route path="/printAttendancePreview" exact element={<AttendancePrintPreview />} />
+            <Route path="/report" exact element={<MonthlyReport />} />
           </Routes>
         </div>
       </BrowserRouter>
