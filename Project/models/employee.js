@@ -21,8 +21,15 @@ const leaveSchema = new mongoose.Schema({
     },
     attendance: {
         type: String,
-        default: 'Available',
+        default: 'Not Available',
+    },
+    chaeckIn:{
+        type: Date,
+    },
+    chechOut:{
+        type: Date,
     }
+    
 
 });
 
