@@ -242,6 +242,7 @@ class Attendance extends Component {
                                                         this.handleCheckInChange
                                                     }
                                                     id="formGroupExampleInput"
+                                                    placeholder={employee.checkIn}
                                                 /></td>
 
                                             <td>{employee.checkOut}

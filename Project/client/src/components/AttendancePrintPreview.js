@@ -104,6 +104,8 @@ class AttendancePrintPreview extends Component {
                                         <th scope="col">No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Attendance</th>
+                                        <th scope="col">Check In Time</th>
+                                        <th scope="col">Chech Out Time</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -112,6 +114,8 @@ class AttendancePrintPreview extends Component {
                                             <th scope="row">{index + 1}</th>
                                             <td>{employee.name}</td>
                                             <td>{employee.attendance}</td>
+                                            <td>{employee.checkIn}</td>
+                                            <td>{employee.checkOut}</td>
                                         </tr>
                                     ))
                                     } </tbody>
