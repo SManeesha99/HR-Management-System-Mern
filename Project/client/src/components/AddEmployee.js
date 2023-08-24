@@ -8,6 +8,7 @@ export default function AddEmployee() {
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
   const [type, setType] = useState("");
+  const [number, setNumber] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,6 +23,8 @@ export default function AddEmployee() {
       setGender(value);
     } else if (name === "type") {
       setType(value);
+    } else if (name === "number") {
+      setNumber(value);
     }
   };
 
@@ -34,6 +37,7 @@ export default function AddEmployee() {
       email: email,
       gender: gender,
       type: type,
+      number: number,
     };
 
     axios.post("/employee/post", data).then((res) => {
@@ -46,6 +50,7 @@ export default function AddEmployee() {
         setEmail("");
         setGender("");
         setType("");
+        setNumber("");
       }
     });
   };
@@ -60,6 +65,15 @@ export default function AddEmployee() {
             type="text"
             name="name"
             value={name}
+            onChange={handleChange}
+            required
+          />
+
+          <label>Employee Number: </label>
+          <input
+            type="text"
+            name="number"
+            value={number}
             onChange={handleChange}
             required
           />

@@ -12,17 +12,19 @@ function EditEmployee() {
   const [email, setEmail] = useState("");
   const [gender, setGender] = useState("");
   const [type, setType] = useState("");
+  const [number, setNumber] = useState("");
 
   useEffect(() => {
     axios.get(`/employee/post/${id}`).then((res) => {
       if (res.data.success) {
         setEmployee(res.data.post);
-        const { name, NIC, email, gender, type } = res.data.post;
+        const { name, NIC, email, gender, type, number } = res.data.post;
         setName(name);
         setNIC(NIC);
         setEmail(email);
         setGender(gender);
         setType(type);
+        setNumber(number);
       }
     });
   }, [id]);
@@ -40,6 +42,8 @@ function EditEmployee() {
       setGender(value);
     } else if (name === "type") {
       setType(value);
+    } else if (name === "number") {
+      setNumber(value);
     }
   };
 
@@ -52,6 +56,7 @@ function EditEmployee() {
       email,
       gender,
       type,
+      number,
     };
 
     axios
@@ -93,6 +98,15 @@ function EditEmployee() {
           value={name}
           onChange={handleChange}
           placeholder={employee.name}
+        />
+
+        <label>Employee Number: </label>
+        <input
+          type="text"
+          name="number"
+          value={number}
+          onChange={handleChange}
+          placeholder={employee.number}
         />
 
         <label>NIC: </label>
