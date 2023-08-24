@@ -220,6 +220,7 @@ class Attendance extends Component {
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
+                                        <th scope="col">Emp No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Attendance</th>
                                         <th scope="col">Check In Time</th>
@@ -232,6 +233,7 @@ class Attendance extends Component {
                                     {this.state.employee.map((employee, index) => (
                                         <tr key={index}>
                                             <th scope="row">{index + 1}</th>
+                                            <th scope="row">{employee.number}</th>
                                             <td>{employee.name}</td>
                                             <td>{employee.attendance} </td>
 
