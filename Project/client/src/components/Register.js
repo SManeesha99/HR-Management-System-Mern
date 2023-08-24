@@ -7,10 +7,10 @@ function Register() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [secretKey, setSecretKey] = useState(""); // New state for secret key
+    const [secretKey, setSecretKey] = useState(""); 
     const navigate = useNavigate();
 
-    const secretKeyToMatch = "hrmanager"; // Replace with your actual secret key
+    const secretKeyToMatch = "hrmanager"; 
 
     const handleSubmit = (e) => {
         e.preventDefault();
