@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./css/form.css";
 import axios from "axios";
+import NavBar from "./NavBar";
 
 export default function AddEmployee() {
   const [name, setName] = useState("");
@@ -56,78 +57,81 @@ export default function AddEmployee() {
   };
 
   return (
-    <div className="containerForm">
-      <form className="create" onSubmit={onSubmit}>
-        <h3>Add New Employee</h3>
-        <center>
-          <label>Name: </label>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Employee Number: </label>
-          <input
-            type="text"
-            name="number"
-            value={number}
-            onChange={handleChange}
-            required
-          />
-
-          <label>NIC: </label>
-          <input
-            type="text"
-            name="NIC"
-            value={NIC}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Email: </label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Gender: </label>
-          <select
-            name="gender"
-            value={gender}
-            onChange={handleChange}
-            required
-          >
-            <option value="">--Select Gender--</option>
-            <option value="Male">M</option>
-            <option value="Female">F</option>
-          </select>
-
-          <label>Type: </label>
-          <select
-            name="type"
-            value={type}
-            onChange={handleChange}
-            required
-          >
-            <option value="">--Select Type--</option>
-            <option value="Associate Software Engineer">E0</option>
-            <option value="Software Engineer">E1</option>
-            <option value="Senior Software Engineer">E2</option>
-          </select>
-
+    <div>
+      <NavBar />
+      <div className="containerForm">
+        <form className="create" onSubmit={onSubmit}>
+          <h3>Add New Employee</h3>
           <center>
-            <button className="btn" type="submit">
-              Submit
-            </button>
+            <label>Name: </label>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              required
+            />
+
+            <label>Employee Number: </label>
+            <input
+              type="text"
+              name="number"
+              value={number}
+              onChange={handleChange}
+              required
+            />
+
+            <label>NIC: </label>
+            <input
+              type="text"
+              name="NIC"
+              value={NIC}
+              onChange={handleChange}
+              required
+            />
+
+            <label>Email: </label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              required
+            />
+
+            <label>Gender: </label>
+            <select
+              name="gender"
+              value={gender}
+              onChange={handleChange}
+              required
+            >
+              <option value="">--Select Gender--</option>
+              <option value="Male">M</option>
+              <option value="Female">F</option>
+            </select>
+
+            <label>Type: </label>
+            <select
+              name="type"
+              value={type}
+              onChange={handleChange}
+              required
+            >
+              <option value="">--Select Type--</option>
+              <option value="Associate Software Engineer">E0</option>
+              <option value="Software Engineer">E1</option>
+              <option value="Senior Software Engineer">E2</option>
+            </select>
+
+            <center>
+              <button className="btn" type="submit">
+                Submit
+              </button>
+            </center>
           </center>
-        </center>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

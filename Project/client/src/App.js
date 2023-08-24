@@ -21,7 +21,7 @@ export default class App extends Component {
           <Helmet>
             <title>Sensus Hub</title>
           </Helmet>
-          <NavBar />
+          {/* <NavBar /> */}
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/details" exact element={<Details />} />

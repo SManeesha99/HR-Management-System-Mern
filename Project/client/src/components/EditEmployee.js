@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import "./css/form.css";
+import NavBar from "./NavBar";
 
 function EditEmployee() {
   const { id } = useParams();
@@ -87,79 +88,82 @@ function EditEmployee() {
   };
 
   return (
-    <div className="containerForm">
-      <form className="create" onSubmit={onSubmit}>
-        <h3>Update Employee</h3>
+    <div>
+      <NavBar />
+      <div className="containerForm">
+        <form className="create" onSubmit={onSubmit}>
+          <h3>Update Employee</h3>
 
-        <label>Name: </label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleChange}
-          placeholder={employee.name}
-        />
+          <label>Name: </label>
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            placeholder={employee.name}
+          />
 
-        <label>Employee Number: </label>
-        <input
-          type="text"
-          name="number"
-          value={number}
-          onChange={handleChange}
-          placeholder={employee.number}
-        />
+          <label>Employee Number: </label>
+          <input
+            type="text"
+            name="number"
+            value={number}
+            onChange={handleChange}
+            placeholder={employee.number}
+          />
 
-        <label>NIC: </label>
-        <input
-          type="text"
-          name="NIC"
-          value={NIC}
-          onChange={handleChange}
-          placeholder={employee.NIC}
-          minLength="6"
-          maxLength="10"
-        />
+          <label>NIC: </label>
+          <input
+            type="text"
+            name="NIC"
+            value={NIC}
+            onChange={handleChange}
+            placeholder={employee.NIC}
+            minLength="6"
+            maxLength="10"
+          />
 
-        <label>Email: </label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleChange}
-          placeholder={employee.email}
-        />
+          <label>Email: </label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+            placeholder={employee.email}
+          />
 
-        <label>Gender: </label>
-        <select
-          name="gender"
-          value={gender}
-          onChange={handleChange}
-          placeholder={employee.gender}
-        >
-          <option value="">{employee.gender}</option>
-          <option value="Male">M</option>
-          <option value="Female">F</option>
-        </select>
+          <label>Gender: </label>
+          <select
+            name="gender"
+            value={gender}
+            onChange={handleChange}
+            placeholder={employee.gender}
+          >
+            <option value="">{employee.gender}</option>
+            <option value="Male">M</option>
+            <option value="Female">F</option>
+          </select>
 
-        <label>Type: </label>
-        <select
-          name="type"
-          value={type}
-          onChange={handleChange}
-          placeholder={employee.type}
-        >
-          <option value="">{employee.type}</option>
-          <option value="Associate Software Engineer">E0</option>
-          <option value="Software Engineer">E1</option>
-          <option value="Senior Software Engineer">E2</option>
-        </select>
+          <label>Type: </label>
+          <select
+            name="type"
+            value={type}
+            onChange={handleChange}
+            placeholder={employee.type}
+          >
+            <option value="">{employee.type}</option>
+            <option value="Associate Software Engineer">E0</option>
+            <option value="Software Engineer">E1</option>
+            <option value="Senior Software Engineer">E2</option>
+          </select>
 
-        <center>
-          <button className="btn" type="submit">
-            Update Employee
-          </button>
-        </center>
-      </form>
+          <center>
+            <button className="btn" type="submit">
+              Update Employee
+            </button>
+          </center>
+        </form>
+      </div>
     </div>
   );
 }

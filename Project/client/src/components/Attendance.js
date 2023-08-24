@@ -5,6 +5,7 @@ import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import Swal from 'sweetalert2';
 import './css/attendance.css';
+import NavBar from './NavBar';
 
 function withParams(Component) {
     return props => <Component params={
@@ -167,6 +168,7 @@ class Attendance extends Component {
 
         return (
             <div>
+                <NavBar />
                 <div className='mt-5'>
                     <div className="containerAttendance">
                         <div className='main-top'>

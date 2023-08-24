@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './css/details.css';
+import NavBar from './NavBar';
 
 function Details() {
     const params = useParams();
@@ -40,6 +41,7 @@ function Details() {
 
     return (
         <div>
+            <NavBar/>
             <div className='mt-5'>
                 <div className='container3'>
                     <div className='add_btn mt-2 mb-2'></div>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams, useLocation } from "react-router-dom";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+import NavBar from './NavBar';
 
 function withParams(Component) {
     return props => <Component params={
@@ -83,6 +84,7 @@ class AttendancePrintPreview extends Component {
 
         return (
             <div>
+                <NavBar />
                 <div className='mt-5'>
                     <div className="containerAttendance">
                         <button onClick={this.handlePrint} className="backBtn">Save</button><br />
