@@ -10,16 +10,12 @@ function Register() {
     const [secretKey, setSecretKey] = useState(""); 
     const navigate = useNavigate();
 
-    const secretKeyToMatch = "hrmanager"; 
+   
 
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        if (secretKey !== secretKeyToMatch) {
-            alert("Invalid secret key. Registration is not allowed.");
-            return;
-        }
-        
+       
         axios.post("/register", { name, email, password })
             .then(result => {
                 console.log(result);
@@ -74,19 +70,7 @@ function Register() {
                     />
                 </div>
 
-                <div className="mb-3">
-                    <label htmlFor="secretKey">
-                        <strong>Secret Key</strong>
-                    </label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        autoComplete="off"
-                        name="secretKey"
-                        placeholder="Enter the secret key"
-                        onChange={(e) => setSecretKey(e.target.value)}
-                    />
-                </div>
+                
 
                 <button type="submit" className="btn btn-primary">
                     Register

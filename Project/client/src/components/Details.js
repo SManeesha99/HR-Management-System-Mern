@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 function Details() {
     const params = useParams();
     const [employee, setEmployee] = useState([]);
+    
 
     useEffect(() => {
         retrievePosts();
