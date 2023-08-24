@@ -16,7 +16,7 @@ function Login() {
         e.preventDefault();
 
 
-        axios.post("login", { email, password })
+        axios.post("/login", { email, password })
             .then(result => {
                 console.log(result);
                 if (result.data === "Login Success") {

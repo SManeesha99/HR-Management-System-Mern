@@ -40,6 +40,8 @@ function Details() {
         });
     };
 
+    
+
     return (
         <div>
             <NavBar/>
