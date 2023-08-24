@@ -5,17 +5,17 @@ import { useNavigate } from "react-router-dom";
 function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    const [secretKey, setSecretKey] = useState(""); 
+    const [secretKey, setSecretKey] = useState("");
     const navigate = useNavigate()
 
-    
+
     const employeeKey = "emp";
     const hrManagerKey = "hrmanager";
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-    
+
+
         axios.post("login", { email, password })
             .then(result => {
                 console.log(result);
@@ -35,7 +35,7 @@ function Login() {
             })
             .catch(err => console.log(err));
     };
-    
+
 
 
     return (

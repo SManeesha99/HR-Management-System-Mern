@@ -4,12 +4,12 @@ function Home() {
     return (
         <div className="containerHome">
             <div className="button-container">
-                <a href="/register" className="button">
-                    Login as HR Department
+                <a href="/login" className="button">
+                    Login
                 </a>
 
-                <a href="registerEmployee" className="button">
-                    Login as Employee
+                <a href="/register" className="button">
+                    Register
                 </a>
             </div>
         </div>

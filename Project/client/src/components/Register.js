@@ -7,15 +7,15 @@ function Register() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [secretKey, setSecretKey] = useState(""); 
+    const [secretKey, setSecretKey] = useState("");
     const navigate = useNavigate();
 
-   
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-       
+
+
         axios.post("/register", { name, email, password })
             .then(result => {
                 console.log(result);
@@ -70,7 +70,7 @@ function Register() {
                     />
                 </div>
 
-                
+
 
                 <button type="submit" className="btn btn-primary">
                     Register
