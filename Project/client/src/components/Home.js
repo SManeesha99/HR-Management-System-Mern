@@ -8,8 +8,8 @@ function Home() {
                     Login as HR Department
                 </a>
 
-                <a href="#" className="button">
-                    Login as Finance Department
+                <a href="registerEmployee" className="button">
+                    Login as Employee
                 </a>
             </div>
         </div>
