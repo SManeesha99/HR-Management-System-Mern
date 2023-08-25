@@ -25,9 +25,9 @@ function Register() {
     }
 
     return (
-        <div>
-            <h1>Register</h1>
-            <form onSubmit={handleSubmit}>
+        <div className="containerForm">
+            <form onSubmit={handleSubmit} className="create">
+                <h3>Register</h3>
                 <div className="mb-3">
                     <label htmlFor="name">
                         <strong>Name</strong>
@@ -75,11 +75,12 @@ function Register() {
                 <button type="submit" className="btn btn-primary">
                     Register
                 </button>
+                <p>Already have an account?</p>
+                <Link to="/login" className="btn btn-primary">
+                    Login
+                </Link>
             </form>
-            <p>Already have an account?</p>
-            <Link to="/login" className="btn btn-primary">
-                Login
-            </Link>
+
         </div>
     );
 }

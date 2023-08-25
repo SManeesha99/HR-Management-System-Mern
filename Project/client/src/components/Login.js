@@ -39,11 +39,9 @@ function Login() {
 
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-
-
+        <div className="containerForm">
+            <form onSubmit={handleSubmit} className="create">
+                <h3>Login</h3>
                 <div className="mb-3">
                     <label htmlFor="email">
                         <strong>Email</strong>
