@@ -13,6 +13,8 @@ import AttendancePrintPreview from './components/AttendancePrintPreview';
 import { Helmet } from "react-helmet";
 import MonthlyReport from './components/MonthlyReport';
 import EmployeeAttendance from './components/EmployeeAttendance';
+import AddAttendance from './components/AddAttendance';
+import ViewAttendance from './components/MonthlyReport/ViewAttendance';
 
 export default class App extends Component {
   render() {
@@ -34,6 +36,8 @@ export default class App extends Component {
             <Route path="/printAttendancePreview" exact element={<AttendancePrintPreview />} />
             <Route path="/report" exact element={<MonthlyReport />} />
             <Route path="/employeeAttendance" exact element={<EmployeeAttendance />} />
+            <Route path="/addAttendance" exact element={<AddAttendance />} />
+            <Route path="/viewAttendance" exact element={<ViewAttendance />} />
           </Routes>
         </div>
       </BrowserRouter>

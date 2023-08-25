@@ -24,6 +24,9 @@ export default function Navbar() {
               <li class="nav-item">
                 <a class="nav-link" href="/attendance">Employee Attendance</a>
               </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="/viewAttendance">View Attendance</a>
+              </li> 
              
               
               

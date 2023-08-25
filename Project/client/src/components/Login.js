@@ -21,7 +21,7 @@ function Login() {
                 console.log(result);
                 if (result.data === "Login Success") {
                     if (secretKey === employeeKey) {
-                        navigate("/employeeAttendance");
+                        navigate("/addAttendance");
                     } else if (secretKey === hrManagerKey) {
                         navigate("/details");
                     } else {

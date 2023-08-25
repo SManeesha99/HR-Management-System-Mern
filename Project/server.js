@@ -31,6 +31,10 @@ app.listen(port, () => {
 const leaveRoutes = require('./routes/employee');
 app.use('/employee', leaveRoutes);
 
+//attendance routes
+const attendanceRoutes = require('./routes/attendance');
+app.use('/attendance', attendanceRoutes);
+
 
 
 
