@@ -1,4 +1,4 @@
-.container{
+/* .container{
     background-color:#1e90ff;
     border-radius: 10px;
     height: 100px;
@@ -17,5 +17,48 @@
     border-radius: 10px;
     color: #1e90ff
 
+}
+ */
+
+
+ .sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #333; 
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidebar-logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    display: block;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar-item {
+    margin-bottom: 10px;
+}
+
+.sidebar-link {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sidebar-link:hover {
+    background-color: #555; /* Adjust hover background color as needed */
 }
 
