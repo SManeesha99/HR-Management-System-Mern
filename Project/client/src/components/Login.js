@@ -1,91 +1,119 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
-function Login() {
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [secretKey, setSecretKey] = useState("");
-    const navigate = useNavigate()
+const Login = () => {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [empType, setEmpType] = useState("");
 
+    const login = async () => {
+        try {
+            const loginUser = { email, password, empType };
+            const response = await axios.post("http://localhost:8000/user/login", loginUser);
 
-    const employeeKey = "emp";
-    const hrManagerKey = "hrmanager";
+            localStorage.setItem("email", response.data.email);
+            localStorage.setItem("empType", response.data.empType);
+            localStorage.setItem("id", response.data.id);
+            localStorage.setItem("name", response.data.name);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-
-        axios.post("/login", { email, password })
-            .then(result => {
-                console.log(result);
-                if (result.data === "Login Success") {
-                    if (secretKey === employeeKey) {
-                        navigate("/addAttendance");
-                    } else if (secretKey === hrManagerKey) {
-                        navigate("/details");
-                    } else {
-                        console.log("Invalid security key");
+            if (response.data.empType === "emp") {
+                Swal.fire({
+                    title: "Success!",
+                    text: "Login Successful Employee!",
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+                navigate("/addAttendance", {
+                    state: {
+                        id: response.data._id
                     }
-                } else if (result.data === "Password didn't match") {
-                    console.log("Password is incorrect");
-                } else if (result.data === "User not registered") {
-                    console.log("User is not registered");
-                }
-            })
-            .catch(err => console.log(err));
+                });
+            } else if (response.data.empType === "hrmanager") {
+                Swal.fire({
+                    title: "Success!",
+                    text: "Login Successful HR Department!",
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+                navigate("/details", {
+                    state: {
+                        id: response.data._id
+                    }
+                });
+            } else {
+                Swal.fire({
+                    title: "Warning!",
+                    text: "Login Unsuccessful!",
+                    icon: 'error',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+                setEmail("");
+                setPassword("");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+        }
     };
-
-
 
     return (
         <div className="containerForm">
-            <form onSubmit={handleSubmit} className="create">
+            <form className="create">
                 <h3>Login</h3>
                 <div className="mb-3">
                     <label htmlFor="email">
                         <strong>Email</strong>
                     </label>
-                    <input type="email"
+                    <input
+                        type="email"
                         className="form-control"
                         autoComplete="off"
                         name="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your email"
-                        onChange={(e) => setEmail(e.target.value)} />
+                    />
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="email">
+                    <label htmlFor="password">
                         <strong>Password</strong>
-                    </label>
-                    <input type="password"
-                        className="form-control"
-                        autoComplete="off"
-                        name="password"
-                        placeholder="Enter your password"
-                        onChange={(e) => setPassword(e.target.value)} />
-                </div>
-
-                <div className="mb-3">
-                    <label htmlFor="secretKey">
-                        <strong>Secret Key</strong>
                     </label>
                     <input
                         type="password"
                         className="form-control"
                         autoComplete="off"
-                        name="secretKey"
-                        placeholder="Enter the secret key"
-                        onChange={(e) => setSecretKey(e.target.value)}
+                        name="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Enter your password"
                     />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
-                    Login
+                <div className="mb-3">
+                    <label htmlFor="empType">
+                        <strong>Employee Type</strong>
+                    </label>
+                    <select className="form-select" aria-label="Floating label select example" id="empType" onChange={e => setEmpType(e.target.value)}>
+                        <option defaultValue>Select Employee Type</option>
+                        <option value="emp">Employee</option>
+                        <option value="hrmanager">HR Manager</option>
+                    </select>
+                </div>
+
+                <button type="button" className="btn btn-primary" onClick={login}>
+                    Sign In
                 </button>
             </form>
         </div>
-    )
+    );
 }
 
-export default Login
+export default Login;

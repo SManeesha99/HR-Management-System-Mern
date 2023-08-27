@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const leaveSchema = new mongoose.Schema({
+    
     number: {
         type: String,
     },
