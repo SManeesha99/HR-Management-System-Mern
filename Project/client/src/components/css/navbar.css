@@ -21,10 +21,10 @@
  */
 
 
- .sidebar {
+.sidebar {
     width: 250px;
     height: 100%;
-    background-color: #1e90ff; 
+    background-color: #1e90ff;
     color: white;
     position: fixed;
     top: 0;
@@ -59,6 +59,5 @@
 }
 
 .sidebar-link:hover {
-    background-color: #555; 
+    background-color: #555;
 }
-
