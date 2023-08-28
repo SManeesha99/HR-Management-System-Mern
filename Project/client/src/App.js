@@ -15,6 +15,7 @@ import MonthlyReport from './components/MonthlyReport';
 import EmployeeAttendance from './components/EmployeeAttendance';
 import AddAttendance from './components/AddAttendance';
 import ViewAttendance from './components/MonthlyReport/ViewAttendance';
+import CheckOut from './components/CheckOut';
 
 export default class App extends Component {
   render() {
@@ -36,7 +37,8 @@ export default class App extends Component {
             <Route path="/printAttendancePreview" exact element={<AttendancePrintPreview />} />
             <Route path="/report" exact element={<MonthlyReport />} />
             <Route path="/employeeAttendance" exact element={<EmployeeAttendance />} />
-            <Route path="/addAttendance" exact element={<AddAttendance />} />
+            <Route path="/checkin" exact element={<AddAttendance />} />
+            <Route path="/checkout" exact element={<CheckOut />} />
             <Route path="/viewAttendance" exact element={<ViewAttendance />} />
           </Routes>
         </div>

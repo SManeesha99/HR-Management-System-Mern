@@ -26,4 +26,15 @@ router.get('/:id', (req, res) => {
 }
 );
 
+//update attendance
+router.put('/update/:id', (req, res) => {
+    Attendance.findByIdAndUpdate(req.params.id, req.body)
+      .then(attendance => res.json({ msg: 'Updated successfully' }))
+      .catch(err =>
+        res.status(400).json({ error: 'Unable to update the Database' })
+      );
+  });
+
+
+
  module.exports = router; 
