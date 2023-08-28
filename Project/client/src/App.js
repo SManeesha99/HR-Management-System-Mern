@@ -17,6 +17,7 @@ import AddAttendance from './components/AddAttendance';
 import ViewAttendance from './components/MonthlyReport/ViewAttendance';
 import CheckOut from './components/CheckOut';
 import EmployeeDetails from './components/Employee/EmployeeDetails';
+import OwnAttendancce from './components/Employee/OwnAttendancce';
 
 export default class App extends Component {
   render() {
@@ -39,9 +40,10 @@ export default class App extends Component {
             <Route path="/report" exact element={<MonthlyReport />} />
             <Route path="/employeeAttendance" exact element={<EmployeeAttendance />} />
             <Route path="/checkin" exact element={<AddAttendance />} />
-            <Route path="/checkout" exact element={<CheckOut />} />
+            <Route path="/checkout/:id" exact element={<CheckOut />} />
             <Route path="/viewAttendance" exact element={<ViewAttendance />} />
             <Route path="/employeeDetails/:id" exact element={<EmployeeDetails />} />
+            <Route path="/ownAttendance" exact element={<OwnAttendancce />} />
           </Routes>
         </div>
       </BrowserRouter>
