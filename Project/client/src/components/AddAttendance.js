@@ -2,10 +2,10 @@ import React, { useState , useEffect  } from 'react';
 import axios from 'axios';
 
 const AddAttendance = () => {
-    const [empNo, setEmpNo] = useState('');
+
+     const [empNo, setEmpNo] = useState('');
     const [date, setDate] = useState('');
     const [checkIn, setCheckIn] = useState('');
-    const [checkOut, setCheckOut] = useState('');
 
     useEffect(() => {
         const currentDate = new Date();
@@ -14,15 +14,20 @@ const AddAttendance = () => {
 
         setDate(formattedDate);
         setCheckIn(formattedTime);
-        // setCheckOut(formattedTime);
+
+        // Retrieve empNo from local storage
+        const storedEmpNo = localStorage.getItem('empNo');
+        if (storedEmpNo) {
+            setEmpNo(storedEmpNo);
+        }
     }, []);
 
     const handleRecordAttendance = async (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8000/attendance/add', {
                 empNo,
-                attendance: [{ date, checkIn}]
+                attendance: [{ date, checkIn }]
             });
 
             alert('Attendance recorded:', response.data);
