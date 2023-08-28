@@ -1,5 +1,7 @@
 import React from 'react';
-import './css/navbar.css'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faUser, faCalendar, faList } from '@fortawesome/free-solid-svg-icons';
+import './css/navbar.css';
 
 export default function Sidebar() {
     return (
@@ -8,16 +10,24 @@ export default function Sidebar() {
 
             <ul className="sidebar-nav">
                 <li className="sidebar-item">
-                    <a href="/" className="sidebar-link">Home</a>
+                    <a href="/" className="sidebar-link">
+                        <FontAwesomeIcon icon={faHome} className="icon" /> Home
+                    </a>
                 </li>
                 <li className="sidebar-item">
-                    <a href="/details" className="sidebar-link">Employee Details</a>
+                    <a href="/details" className="sidebar-link">
+                        <FontAwesomeIcon icon={faUser} className="icon" /> Employee Details
+                    </a>
                 </li>
                 <li className="sidebar-item">
-                    <a href="/attendance" className="sidebar-link">Employee Attendance</a>
+                    <a href="/attendance" className="sidebar-link">
+                        <FontAwesomeIcon icon={faCalendar} className="icon" /> Employee Attendance
+                    </a>
                 </li>
                 <li className="sidebar-item">
-                    <a href="/viewAttendance" className="sidebar-link">View Attendance</a>
+                    <a href="/viewAttendance" className="sidebar-link">
+                        <FontAwesomeIcon icon={faList} className="icon" /> View Attendance
+                    </a>
                 </li>
             </ul>
         </div>

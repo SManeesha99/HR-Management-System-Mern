@@ -24,7 +24,7 @@
 .sidebar {
     width: 250px;
     height: 100%;
-    background-color: #1e90ff;
+    background-color: rgb(34, 33, 33);
     color: white;
     position: fixed;
     top: 0;
@@ -38,6 +38,8 @@
     height: 70px;
     margin: 0 auto;
     display: block;
+    margin-bottom: 60px;
+    margin-top: 30px;
 }
 
 .sidebar-nav {
@@ -60,4 +62,9 @@
 
 .sidebar-link:hover {
     background-color: #555;
+}
+
+.icon{
+    margin-right: 20px;
+    margin-left: 20px;
 }

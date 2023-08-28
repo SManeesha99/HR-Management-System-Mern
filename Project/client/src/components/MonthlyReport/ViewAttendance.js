@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as XLSX from 'xlsx';
 import NavBar from '../NavBar';
+import '../css/attendance.css';
 
 const ViewAttendance = () => {
     const [attendance, setAttendance] = useState([]);
@@ -62,7 +63,7 @@ const ViewAttendance = () => {
             <div className='py-5'>
                 <div className="container">
                     <div className="row justify-content-center">
-                        <div className="col-md-12">
+                        <div className="col-md-10">
                             <div className="card">
                                 <div className="card-header">
                                     <h4>Filter Attendance</h4>

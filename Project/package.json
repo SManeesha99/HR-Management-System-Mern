@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.4.0",
     "body-parser": "^1.20.1",
@@ -42,6 +44,6 @@
   "devDependencies": {
     "eslint-plugin-jest": "^27.2.1",
     "install": "^0.13.0",
-    "npm": "^9.6.6"
+    "npm": "^9.8.1"
   }
 }
