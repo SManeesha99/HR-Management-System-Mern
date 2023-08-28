@@ -63,8 +63,12 @@ const userRoutes = require('./routes/User');
 app.use('/user', userRoutes);
 
 
-const leaveRoutes = require('./routes/employee');
-app.use('/employee', leaveRoutes);
+// const leaveRoutes = require('./routes/employee');
+// app.use('/employee', leaveRoutes);
+
+//employee routes
+const employeeRoutes = require('./routes/employee');
+app.use('/employee', employeeRoutes);
 
 //attendance routes
 const attendanceRoutes = require('./routes/attendance');

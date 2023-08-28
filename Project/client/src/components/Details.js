@@ -5,40 +5,63 @@ import Swal from 'sweetalert2';
 import './css/details.css';
 import NavBar from './NavBar';
 
-function Details() {
-    const params = useParams();
+const  Details = () => {
+
+    const [searchTerm, setSearchTerm] = useState('');
     const [employee, setEmployee] = useState([]);
-    
 
     useEffect(() => {
-        retrievePosts();
-    }, []);
+        const getEmployee = async () => {
+            await axios.get('http://localhost:8000/employee/').then((res) => {
+                setEmployee(res.data);
+                console.log(res.data);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+        getEmployee();
+    },[]);
 
-    const retrievePosts = () => {
-        axios.get('/employee/post').then((res) => {
-            if (res.data.success) {
-                setEmployee(res.data.existingPosts);
-            }
-        });
-    };
+    const filterEmployee = employee.filter((employee) => {
+        return (
+            employee.empNo.toLowerCase().includes(searchTerm.toLocaleLowerCase())||
+            employee.empName.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+        );
+    });
 
-    const onDelete = (id) => {
-        Swal.fire({
-            title: 'Are you sure you want to delete this?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#FFB400',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios.delete(`/employee/post/${id}`).then((res) => {
-                    Swal.fire('Deleted!', 'Employee has been deleted.', 'success');
-                    retrievePosts();
-                });
-            }
-        });
-    };
+    // const params = useParams();
+    // const [employee, setEmployee] = useState([]);
+    
+
+    // useEffect(() => {
+    //     retrievePosts();
+    // }, []);
+
+    // const retrievePosts = () => {
+    //     axios.get('http://localhost:8000/employee/').then((res) => {
+    //         if (res.data.success) {
+    //             setEmployee(res.data.existingPosts);
+    //         }
+    //     });
+    // };
+
+    // const onDelete = (id) => {
+    //     Swal.fire({
+    //         title: 'Are you sure you want to delete this?',
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#FFB400',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Yes, delete it!',
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             axios.delete(`/employee/post/${id}`).then((res) => {
+    //                 Swal.fire('Deleted!', 'Employee has been deleted.', 'success');
+    //                 retrievePosts();
+    //             });
+    //         }
+    //     });
+    // };
 
     
 
@@ -52,6 +75,15 @@ function Details() {
                         <div className='main-top'>
                             <h1>Employee List</h1>
                         </div>
+                        <label className='mt-3'>Search Employee</label>
+                        <div className="col-5 mt-1">
+                            <input
+                                type="text"
+                                placeholder="Search Employee"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
                         <table className='table' id='EmployeeTable'>
                             <thead>
                                 <tr >
@@ -63,27 +95,19 @@ function Details() {
                                     <th scope='col'>Gender</th>
                                     <th scope='col'>Type</th>
                                     <th scope='col'></th>
-                                    <th scope='col'></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {employee.map((employee, index) => (
+                                {filterEmployee.map((emp, index) => (
                                     <tr key={index}>
                                         <th scope='row'>{index + 1}</th>
-                                        <th scope='row'>{employee.number}</th>
-                                        <td>{employee.name}</td>
-                                        <td>{employee.email}</td>
-                                        <td>{employee.NIC}</td>
-                                        <td>{employee.gender}</td>
-                                        <td>{employee.type}</td>
-                                        <td>
-                                            <a href={`/update/${employee._id}`} className='btn-edit'>
-                                                Update
-                                            </a>
-                                        </td>
-                                        <td onClick={() => onDelete(employee._id)}>
-                                            <a className='btn-delete'>Delete</a>
-                                        </td>
+                                        <th scope='row'><a href={`/employeeDetails/${emp._id}`} style={{ textDecoration:'none', color:'black' }}>{emp.empNo}</a></th>
+                                        <td><a href={`/employeeDetails/${emp._id}`} style={{ textDecoration:'none', color:'black' }}>{emp.empName}</a></td>
+                                        <td>{emp.email}</td>
+                                        <td>{emp.NIC}</td>
+                                        <td>{emp.gender}</td>
+                                        <td>{emp.empType}</td>
+                                         
                                     </tr>
                                 ))}
                             </tbody>
