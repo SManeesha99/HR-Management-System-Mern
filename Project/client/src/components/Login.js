@@ -27,7 +27,7 @@ const Login = () => {
                     timer: 2000,
                     showConfirmButton: false,
                 });
-                navigate("/addAttendance", {
+                navigate("/checkin", {
                     state: {
                         id: response.data._id
                     }
