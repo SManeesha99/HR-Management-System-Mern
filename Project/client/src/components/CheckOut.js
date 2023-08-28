@@ -33,18 +33,6 @@ const CheckOut = () => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="checkIn">Check-In</label>
-                                <div className="d-flex align-items-center justify-content-center">
-                                    <input
-                                        type="time"
-                                        id="checkIn"
-                                        className="form-control"
-                                        required
-                                    />
-                                    {/* <button type="button" className="btn btn-primary ml-3">ON</button> */}
-                                </div>
-                            </div>
-                            <div className="form-group">
                                 <label htmlFor="checkOut">Check-Out</label>
                                 <div className="d-flex align-items-center justify-content-center">
                                     <input

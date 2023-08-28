@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Employee = require("../models/employee");
+const jwt = require('jsonwebtoken');
 
 
 //add employee
@@ -25,6 +26,59 @@ router.get('/:id', (req, res) => {
       .catch(err => res.status(404).json({ noitemfound: 'No place found' }));
 });
 
+
+router.route('/updatePassword/:id').put((req, res) => {
+  const empID = req.params.id;
+  const newPassword = req.body.password;
+
+  Employee.findById(empID)
+      .then((employee) => {
+          if (!employee) {
+              res.status(404).json({ error: 'Employee not found' });
+          } else {
+              employee.password = newPassword;
+              employee.save()
+                  .then(() => {
+                      res.json({ message: 'Password updated successfully' });
+                  })
+                  .catch((err) => {
+                      res.status(400).json({ error: 'Error updating password' });
+                  });
+          }
+      })
+      .catch((err) => {
+          res.status(400).json({ error: 'Error updating password' });
+      });
+});
+
+
+router.post("/login", async (req,res) => {
+  const employee = await Employee.findOne({email:req.body.email, password:req.body.password, empType:req.body.empType});
+  if (employee){
+
+      
+  const tokendetails= {email:req.body.email};
+  const accessToken=jwt.sign(tokendetails,process.env.TOKEN_KEY,{expiresIn: '1d'});
+
+  const data = {
+      status:true,
+      email:employee.email,
+      empType:employee.empType,
+      id:employee._id,
+      accesstoken: accessToken,
+      empName:employee.empName,
+      empNo:employee.empNo,
+  };
+
+      res.send(data)
+  }else{
+      res.send({
+          status:false
+      })
+  }
+})
+
+//login
 
 
 

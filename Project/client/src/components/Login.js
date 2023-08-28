@@ -12,12 +12,14 @@ const Login = () => {
     const login = async () => {
         try {
             const loginUser = { email, password, empType };
-            const response = await axios.post("http://localhost:8000/user/login", loginUser);
+            const response = await axios.post("http://localhost:8000/employee/login", loginUser);
 
             localStorage.setItem("email", response.data.email);
             localStorage.setItem("empType", response.data.empType);
             localStorage.setItem("id", response.data.id);
-            localStorage.setItem("name", response.data.name);
+            localStorage.setItem("empName", response.data.empName);
+            localStorage.setItem("empNo", response.data.empNo);
+
 
             if (response.data.empType === "emp") {
                 Swal.fire({

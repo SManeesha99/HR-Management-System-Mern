@@ -1,31 +1,52 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import NavBar from '../NavBar';
 
 const EmployeeDetails = () => {
 
-    const [employee, setEmployee] = React.useState({});
-    const params = useParams();
-    const empID = params.id;
+    
+  const [password, setPassword] = useState('');
+  const [employee, setEmployee] = useState({});
+  const params = useParams();
+  const empID = params.id;
 
-    useEffect(()=>{
-        const getOneEmployee = async () => {
-          await axios.get(`http://localhost:8000/employee/${empID}`).then((res) => {
-            setEmployee(res.data);
-          }).catch((err) => {
-              console.log(err.massage);
-          }) 
+  const handlePasswordChange = (e) => {
+      setPassword(e.target.value);
+  };
+
+  const updatePassword = async () => {
+      try {
+          const response = await axios.put(`http://localhost:8000/employee/updatePassword/${empID}`, {
+              password,
+          });
+          console.log(response.data);
+          alert('Password updated successfully');
+      } catch (error) {
+          console.error(error);
+          alert('An error occurred while updating the password');
       }
+  };
+
+  useEffect(() => {
+      const getOneEmployee = async () => {
+          try {
+              const response = await axios.get(`http://localhost:8000/employee/${empID}`);
+              setEmployee(response.data);
+          } catch (error) {
+              console.log(error.message);
+          }
+      };
       getOneEmployee();
-    },[])
+  }, [empID]);
 
 
 
   return (
     <div>
         <NavBar />
-        <div className="container mt-4">
+        <div className='container ml-3'>
+        <div className="container mt-4 ml-3" >
         <div className="card">
           <div className="card-header">
             <h2>Employee Details</h2>
@@ -47,16 +68,48 @@ const EmployeeDetails = () => {
                 <p><strong>Position:</strong> <p className='form-control'>{employee.empField}</p></p>
               </div>
             </div>
-            <div className="row mt-4">
+            <div className="row ">
               <div className="col-6">
                 <h3>Contact Information</h3>
                 <p><strong>Address:</strong> <p className='form-control'>{employee.address}</p></p>
                 <p><strong>Contact Number:</strong> <p className='form-control'>{employee.contactNo}</p></p>
               </div>
+              <div className="col-6">
+                  <form className='border py-2'>
+                    <center>
+                          <h3>System Login Information</h3>
+                          <p>
+                              <strong>User email:</strong> {employee.email}
+                          </p>
+                          <p>
+                              <strong>New Password:</strong>
+                              
+                              <input
+                                  className='form-control'
+                                  type='password'
+                                  id='password'
+                                  name='password'
+                                  value={password}
+                                  onChange={handlePasswordChange}
+                                  placeholder={employee.password}
+                              />
+                          </p>
+                          <button
+                              className='btn btn-primary'
+                              type='button'
+                              onClick={updatePassword}
+                          >
+                              Update Password
+                          </button>
+                    </center>
+                  </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
+        </div>
+
     </div>
   )
 }
