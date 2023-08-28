@@ -1,8 +1,44 @@
+const router = require("express").Router();
+const Employee = require("../models/employee");
 
 
-const express = require('express');
-const employee =  require('../models/employee');
-const router = express.Router();
+//add employee
+router.post('/add', (req, res) => {
+    Employee.create(req.body)
+      .then(employee => res.json({ msg: 'employee added successfully' }))
+      .catch(err => res.status(400).json({ error: 'Unable to add this employee' }));
+});
+
+
+//get all employee
+router.get('/', (req, res) => {
+    Employee.find()
+        .then(employee => res.json(employee))
+        .catch(err => res.status(400).json({ error: 'Unable to get employee' }));
+});
+
+
+//get employee by id
+router.get('/:id', (req, res) => {
+    Employee.findById(req.params.id)
+      .then(employee => res.json(employee))
+      .catch(err => res.status(404).json({ noitemfound: 'No place found' }));
+});
+
+
+
+
+
+
+
+module.exports = router;
+
+
+
+
+// const express = require('express');
+// const employee =  require('../models/employee');
+// const router = express.Router();
 
 // router.post('/login', (req, res) => {
 //   const { NIC, password } = req.body;
@@ -114,4 +150,4 @@ const router = express.Router();
 
 
 
-module.exports = router;
+// module.exports = router;

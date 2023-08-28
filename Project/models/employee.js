@@ -1,40 +1,52 @@
 const mongoose = require('mongoose');
 
-const leaveSchema = new mongoose.Schema({
+const EmployeeSchema = new mongoose.Schema({
     
-    number: {
+    empNo: {
         type: String,
+        required: true
     },
-    name: {
+    empName: {
         type: String,
+        required: true
     },
     email: {
         type: String,
+        required: true
     },
-    type: {
+    empType: {
         type: String,
+        required: true
     },
     gender: {
         type: String,
+        required: true
     },
     NIC: {
         type: String,
+        required: true
     },
     salary: {
         type: String,
+        required: true
     },
-    attendance: {
+    address: {
         type: String,
-        default: 'Not Available',
+        required: true
     },
-    checkIn: {
+    contactNo: {
+        type: String,
+        required: true
+    },
+    empField: {
+        type: String,
+        required: true
+    },
+    password: {
         type: String,
     },
-    checkOut: {
-        type: String,
-    }
 
 
 });
 
-module.exports = mongoose.model('HRManagement', leaveSchema);
+module.exports = mongoose.model('Employees', EmployeeSchema);
