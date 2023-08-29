@@ -18,6 +18,7 @@ import ViewAttendance from './components/MonthlyReport/ViewAttendance';
 import CheckOut from './components/CheckOut';
 import EmployeeDetails from './components/Employee/EmployeeDetails';
 import OwnAttendancce from './components/Employee/OwnAttendancce';
+import SingaleEmploye from './components/Employee/SingaleEmploye';
 
 export default class App extends Component {
   render() {
@@ -44,6 +45,7 @@ export default class App extends Component {
             <Route path="/viewAttendance" exact element={<ViewAttendance />} />
             <Route path="/employeeDetails/:id" exact element={<EmployeeDetails />} />
             <Route path="/ownAttendance" exact element={<OwnAttendancce />} />
+            <Route path="/singaleEmploye/:id" exact element={<SingaleEmploye />} />
           </Routes>
         </div>
       </BrowserRouter>

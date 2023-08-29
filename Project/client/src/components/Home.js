@@ -8,9 +8,9 @@ function Home() {
                     Login
                 </a>
 
-                <a href="/register" className="button">
+                {/* <a href="/register" className="button">
                     Register
-                </a>
+                </a> */}
             </div>
         </div>
     );

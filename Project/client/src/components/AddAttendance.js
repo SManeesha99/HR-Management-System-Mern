@@ -1,9 +1,11 @@
 import React, { useState , useEffect  } from 'react';
 import axios from 'axios';
+import EmpSideNav from './EmpSideNav'
 
 const AddAttendance = () => {
 
      const [empNo, setEmpNo] = useState('');
+     const [empName, setEmpName] = useState('');
     const [date, setDate] = useState('');
     const [checkIn, setCheckIn] = useState('');
 
@@ -16,6 +18,10 @@ const AddAttendance = () => {
         setCheckIn(formattedTime);
 
         // Retrieve empNo from local storage
+        const storedEmpName = localStorage.getItem('empName');
+        if (storedEmpName) {
+            setEmpName(storedEmpName);
+        }
         const storedEmpNo = localStorage.getItem('empNo');
         if (storedEmpNo) {
             setEmpNo(storedEmpNo);
@@ -31,13 +37,16 @@ const AddAttendance = () => {
             });
 
             alert('Attendance recorded:', response.data);
+            window.location.href = '/ownAttendance';
         } catch (error) {
             console.error('Error recording attendance:', error);
         }
     };
 
     return (
-        <div className='py-5'>
+        <div>
+            <EmpSideNav />
+            <div className='py-5'>
     <div className="container">
         <div className="row justify-content-center">
             <div className="col-md-5">
@@ -47,6 +56,17 @@ const AddAttendance = () => {
                     </div>
                     <div className="card-body text-center">
                         <form onSubmit={handleRecordAttendance}>
+                        <div className="form-group">
+                                <label htmlFor="empName">Employee Name</label>
+                                <input
+                                    type="text"
+                                    id="empName"
+                                    value={empName}
+                                    onChange={(e) => setEmpName(e.target.value)}
+                                    className="form-control"
+                                    required
+                                />
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="empNo">Employee No</label>
                                 <input
@@ -111,6 +131,8 @@ const AddAttendance = () => {
                 </div>
             </div>
         </div>
+        </div>
+        
     );
 };
 

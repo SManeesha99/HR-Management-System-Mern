@@ -1,9 +1,14 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faCalendar, faList } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser, faCalendar, faList, faArrowAltCircleDown, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import './css/navbar.css';
 
 export default function Sidebar() {
+    const handleSignout = () => {
+        localStorage.clear();
+        window.location.href = '/login';
+    };
     return (
         <div className="sidebar">
             <img src="../images/logo.png" alt="Logo" className="sidebar-logo" />
@@ -30,6 +35,16 @@ export default function Sidebar() {
                     </a>
                 </li>
             </ul>
+
+            <div className="sidebar-item">
+                <ul className="sidebar-nav">
+                    <li className="sidebar-item">
+                            <a  className="sidebar-link" onClick={handleSignout}>
+                                <FontAwesomeIcon icon={faArrowAltCircleLeft} className="icon" /> Sign Out
+                            </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 }

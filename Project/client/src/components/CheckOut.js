@@ -4,6 +4,7 @@ import axios from 'axios';
 import EmpSideNav from './EmpSideNav';
 
 const CheckOut = () => {
+    
     const [attendance, setAttendance] = useState({});
     const [newCheckOut, setNewCheckOut] = useState('');
     const params = useParams();
@@ -39,6 +40,7 @@ const CheckOut = () => {
                 const updatedAttendance = { ...attendance };
                 updatedAttendance.attendance[0].checkOut = newCheckOut;
                 setAttendance(updatedAttendance);
+                window.location.href = '/ownAttendance';
             }
         } catch (error) {
             console.log(error.message);

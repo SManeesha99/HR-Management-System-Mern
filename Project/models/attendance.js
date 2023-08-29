@@ -4,6 +4,9 @@ const attendanceSchema = new mongoose.Schema({
     empNo: {
         type: String,
     },
+    empName: {
+        type: String,
+    },
     attendance: [{
         date: { type: Date, default: Date.now },
         checkIn: String,
