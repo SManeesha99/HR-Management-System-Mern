@@ -78,6 +78,18 @@ router.put('/update/:id', (req, res) => {
 });
 
 
+router.get('/attendance/check', (req, res) => {
+    const { empNo, date } = req.query;
+
+    const existingRecord = checkInRecords.find(record => record.empNo === empNo && record.date === date);
+
+    if (existingRecord) {
+        return res.json({ exists: true });
+    }
+
+    return res.json({ exists: false });
+});
+
 //   router.put('/update-checkout/:attendanceId/:entryId', async (req, res) => {
 //     const { attendanceId, entryId } = req.params;
 //     const { checkOut } = req.body;

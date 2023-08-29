@@ -104,6 +104,7 @@ const ViewAttendance = () => {
                                                 <tr>
                                                     <th scope="col">No</th>
                                                     <th scope="col">EmpNo</th>
+                                                    {/* <th scope='col'>Emp Name</th> */}
                                                     <th scope="col">Date</th>
                                                     <th scope="col">CheckIn</th>
                                                     <th scope="col">CheckOut</th>
@@ -137,6 +138,7 @@ const ViewAttendance = () => {
                                                     <tr key={index}>
                                                         <td>{index + 1}</td>
                                                         <td>{entry.empNo}</td>
+                                                        {/* <td>{entry.empName}</td> */}
                                                         <td>{new Date(entry.attendance[0].date).toISOString().split('T')[0]}</td>
                                                         <td>{checkInTime}</td>
                                                         <td>{checkOutTime}</td>

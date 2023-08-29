@@ -15,6 +15,7 @@ const OwnAttendancce = () => {
             try {
                 const response = await axios.get(`http://localhost:8000/attendance/own/${empNo}`);
                 setAttendance(response.data);
+                
             } catch (error) {
                 console.error(error.message);
             }
@@ -114,7 +115,7 @@ const OwnAttendancce = () => {
                                                     <tr key={index}>
                                                         <td>{index + 1}</td>
                                                         <td>{entry.empNo}</td>
-                                                        <td>{new Date(entry.attendance[0].date).toISOString().split('T')[0]}</td>
+                                                        <td><a href={`/checkout/${entry._id}`} style={{ textDecoration:'none', color:'black' }}>{new Date(entry.attendance[0].date).toISOString().split('T')[0]}</a></td>
                                                         <td>{checkInTime}</td>
                                                         <td>{checkOutTime}</td>
                                                         <td>{type}</td>

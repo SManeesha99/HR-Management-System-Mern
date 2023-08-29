@@ -1,9 +1,21 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faCalendar, faList } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser, faCalendar, faList,faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import './css/navbar.css';
 
 const EmpSideNav = () => {
+    
+    const handleEmployeeDetailsClick = () => {
+        const employeeId = localStorage.getItem('id');
+        if (employeeId) {
+            window.location.href = `/singaleEmploye/${employeeId}`;
+        }
+    };
+
+    const handleSignout = () => {
+        localStorage.clear();
+        window.location.href = '/login';
+    };
   return (
 <div className="sidebar">
             <img src="../images/logo.png" alt="Logo" className="sidebar-logo" />
@@ -14,7 +26,22 @@ const EmpSideNav = () => {
                         <FontAwesomeIcon icon={faHome} className="icon" /> Home
                     </a>
                 </li>
+                <li className="sidebar-item">
+                    <a href='#' className="sidebar-link" onClick={handleEmployeeDetailsClick}>
+                        <FontAwesomeIcon icon={faUser} className="icon" /> Employee Details
+                    </a>
+                </li>
             </ul>
+
+            <div className="sidebar-item">
+                <ul className="sidebar-nav">
+                    <li className="sidebar-item">
+                            <a  className="sidebar-link" onClick={handleSignout}>
+                                <FontAwesomeIcon icon={faArrowAltCircleLeft} className="icon" /> Sign Out
+                            </a>
+                    </li>
+                </ul>
+            </div>
         </div>
   )
 }
