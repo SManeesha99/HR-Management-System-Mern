@@ -53,7 +53,7 @@ router.route('/updatePassword/:id').put((req, res) => {
 
 
 router.post("/login", async (req,res) => {
-  const employee = await Employee.findOne({email:req.body.email, password:req.body.password, empType:req.body.empType});
+  const employee = await Employee.findOne({email:req.body.email, password:req.body.password});
   if (employee){
 
       

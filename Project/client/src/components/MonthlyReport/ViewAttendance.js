@@ -109,6 +109,7 @@ const ViewAttendance = () => {
                                                     <th scope="col">CheckOut</th>
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Working Hours</th>
+                                                    <th scope="col">Ot Hours</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -118,6 +119,7 @@ const ViewAttendance = () => {
 
                                                     let type = "Pending";
                                                     let workingHours = ""; 
+                                                    let ot = "";
 
                                                     if (!checkOutTime) {
                                                         type = "Pending";
@@ -131,6 +133,9 @@ const ViewAttendance = () => {
 
                                                         if (hours >= 8) {
                                                             type = "Present";
+                                                            if(hours > 8) {
+                                                                ot = `${hours - 8}h ${minutes}m`;
+                                                            }
                                                         } else if (hours >= 4 && hours < 8) {
                                                             type = "Halfday";
                                                         } else {
@@ -147,6 +152,7 @@ const ViewAttendance = () => {
                                                             <td>{checkOutTime}</td>
                                                             <td>{type}</td>
                                                             <td>{workingHours}</td> 
+                                                            <td>{ot}</td>
                                                         </tr>
                                                     );
                                                 })}
