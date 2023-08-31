@@ -19,6 +19,8 @@ import CheckOut from './components/CheckOut';
 import EmployeeDetails from './components/Employee/EmployeeDetails';
 import OwnAttendancce from './components/Employee/OwnAttendancce';
 import SingaleEmploye from './components/Employee/SingaleEmploye';
+import UpdateEmpDetails from './components/Employee/UpdateEmpDetails';
+import UpdateDetails from './components/Employee/UpdateDetails';
 
 export default class App extends Component {
   render() {
@@ -46,6 +48,8 @@ export default class App extends Component {
             <Route path="/employeeDetails/:id" exact element={<EmployeeDetails />} />
             <Route path="/ownAttendance" exact element={<OwnAttendancce />} />
             <Route path="/singaleEmploye/:id" exact element={<SingaleEmploye />} />
+            <Route path="/updateEmpDetails/:id" exact element={<UpdateEmpDetails />} />
+            <Route path="/updateDetails/:id" exact element={<UpdateDetails />} />
           </Routes>
         </div>
       </BrowserRouter>

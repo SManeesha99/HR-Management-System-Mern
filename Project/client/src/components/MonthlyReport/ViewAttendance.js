@@ -104,51 +104,55 @@ const ViewAttendance = () => {
                                                 <tr>
                                                     <th scope="col">No</th>
                                                     <th scope="col">EmpNo</th>
-                                                    {/* <th scope='col'>Emp Name</th> */}
                                                     <th scope="col">Date</th>
                                                     <th scope="col">CheckIn</th>
                                                     <th scope="col">CheckOut</th>
                                                     <th scope="col">Type</th>
+                                                    <th scope="col">Working Hours</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {filteredAttendance.map((entry, index) => {
-                                                const checkInTime = entry.attendance[0].checkIn;
-                                                const checkOutTime = entry.attendance[0].checkOut;
+                                                {filteredAttendance.map((entry, index) => {
+                                                    const checkInTime = entry.attendance[0].checkIn;
+                                                    const checkOutTime = entry.attendance[0].checkOut;
 
-                                                let type = "Absent"; // Default type
-                                                if (
-                                                    (checkInTime <= "08:30" && checkOutTime >= "17:30") ||
-                                                    (checkInTime <= "08:30" && checkOutTime >= "17:30")
-                                                ) {
-                                                    type = "Present";
-                                                } else if (
-                                                    (checkInTime <= "12:30" && checkOutTime >= "17:30") ||
-                                                    (checkInTime <= "08:30" && checkOutTime >= "17:30")
-                                                ) {
-                                                    type = "Halfday";
-                                                } else if (
-                                                    (checkInTime <= "08:30" && checkOutTime <= "12:30") ||
-                                                    (checkInTime <= "17:30" && checkOutTime <= "17:30")
-                                                ) {
-                                                    type = "Short Leave";
-                                                }
+                                                    let type = "Pending";
+                                                    let workingHours = ""; 
 
-                                                return (
-                                                    <tr key={index}>
-                                                        <td>{index + 1}</td>
-                                                        <td>{entry.empNo}</td>
-                                                        {/* <td>{entry.empName}</td> */}
-                                                        <td>{new Date(entry.attendance[0].date).toISOString().split('T')[0]}</td>
-                                                        <td>{checkInTime}</td>
-                                                        <td>{checkOutTime}</td>
-                                                        <td>{type}</td>
-                                                    </tr>
-                                                );
-                                            })}
-                                        </tbody>
+                                                    if (!checkOutTime) {
+                                                        type = "Pending";
+                                                    } else {
+                                                        const checkIn = new Date(`2000-01-01 ${checkInTime}`);
+                                                        const checkOut = new Date(`2000-01-01 ${checkOutTime}`);
+                                                        const timeDifference = checkOut - checkIn;
+                                                        const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+                                                        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                                                        workingHours = `${hours}h ${minutes}m`;
 
+                                                        if (hours >= 8) {
+                                                            type = "Present";
+                                                        } else if (hours >= 4 && hours < 8) {
+                                                            type = "Halfday";
+                                                        } else {
+                                                            type = "Short Leave";
+                                                        }
+                                                    }
+
+                                                    return (
+                                                        <tr key={index}>
+                                                            <td>{index + 1}</td>
+                                                            <td>{entry.empNo}</td>
+                                                            <td>{new Date(entry.attendance[0].date).toISOString().split('T')[0]}</td>
+                                                            <td>{checkInTime}</td>
+                                                            <td>{checkOutTime}</td>
+                                                            <td>{type}</td>
+                                                            <td>{workingHours}</td> 
+                                                        </tr>
+                                                    );
+                                                })}
+                                            </tbody>
                                         </table>
+
                                     </div>
                                     <div className="row mt-3">
                                         <div className="col text-center">

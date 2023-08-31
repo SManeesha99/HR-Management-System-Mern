@@ -36,7 +36,6 @@ const CheckOut = () => {
             );
 
             if (response.status === 200) {
-                // Update local attendance state with the new check-out time
                 const updatedAttendance = { ...attendance };
                 updatedAttendance.attendance[0].checkOut = newCheckOut;
                 setAttendance(updatedAttendance);
@@ -70,7 +69,7 @@ const CheckOut = () => {
                                                     value={attendance.empNo}
                                                     className='form-control'
                                                     readOnly
-                                                />
+                                            />
                                             </div>
                                             <div className='form-group'>
                                                 <label htmlFor='date'>Date</label>
@@ -80,7 +79,7 @@ const CheckOut = () => {
                                                     value={new Date(attendance.attendance?.[0]?.date).toLocaleDateString()}
                                                     className='form-control'
                                                     readOnly
-                                                />
+                                            />
                                             </div>
                                             <div className='form-group'>
                                                 <label htmlFor='checkOut'>Check-Out</label>

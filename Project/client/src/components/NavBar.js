@@ -15,7 +15,7 @@ export default function Sidebar() {
 
             <ul className="sidebar-nav">
                 <li className="sidebar-item">
-                    <a href="/" className="sidebar-link">
+                    <a href="#" className="sidebar-link">
                         <FontAwesomeIcon icon={faHome} className="icon" /> Home
                     </a>
                 </li>
@@ -24,11 +24,11 @@ export default function Sidebar() {
                         <FontAwesomeIcon icon={faUser} className="icon" /> Employee Details
                     </a>
                 </li>
-                <li className="sidebar-item">
+                {/* <li className="sidebar-item">
                     <a href="/attendance" className="sidebar-link">
                         <FontAwesomeIcon icon={faCalendar} className="icon" /> Employee Attendance
                     </a>
-                </li>
+                </li> */}
                 <li className="sidebar-item">
                     <a href="/viewAttendance" className="sidebar-link">
                         <FontAwesomeIcon icon={faList} className="icon" /> View Attendance
