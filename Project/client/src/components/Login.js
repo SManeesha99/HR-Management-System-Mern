@@ -11,30 +11,26 @@ const Login = () => {
 
     const login = async () => {
         try {
-            const loginUser = { email, password, empType };
+            const loginUser = { email, password};
             const response = await axios.post("http://localhost:8000/employee/login", loginUser);
-
-            localStorage.setItem("email", response.data.email);
-            localStorage.setItem("empType", response.data.empType);
-            localStorage.setItem("id", response.data.id);
-            localStorage.setItem("empName", response.data.empName);
-            localStorage.setItem("empNo", response.data.empNo);
-
-
-            if (response.data.empType === "emp") {
+    
+            
+    
+            if (loginUser.email === "admin@gmail.com" && loginUser.password === "admin") {
                 Swal.fire({
                     title: "Success!",
-                    text: "Login Successful Employee!",
+                    text: "Login Successful Admin!",
                     icon: 'success',
                     timer: 2000,
                     showConfirmButton: false,
                 });
-                navigate("/checkin", {
-                    state: {
-                        id: response.data._id
-                    }
-                });
-            } else if (response.data.empType === "hrmanager") {
+                navigate("/details"); 
+            } else if (response.data.empType === "hrmanager" || response.data.empType === "emp" ) {
+                localStorage.setItem("email", response.data.email);
+                localStorage.setItem("empType", response.data.empType);
+                localStorage.setItem("id", response.data.id);
+                localStorage.setItem("empName", response.data.empName);
+                localStorage.setItem("empNo", response.data.empNo);
                 Swal.fire({
                     title: "Success!",
                     text: "Login Successful HR Department!",
@@ -42,7 +38,7 @@ const Login = () => {
                     timer: 2000,
                     showConfirmButton: false,
                 });
-                navigate("/details", {
+                navigate("/checkin", {
                     state: {
                         id: response.data._id
                     }
@@ -62,6 +58,7 @@ const Login = () => {
             console.error("Error during login:", error);
         }
     };
+    
 
     return (
         <div className="containerForm">
@@ -99,7 +96,7 @@ const Login = () => {
                     />
                 </div>
 
-                <div className="mb-3">
+                {/* <div className="mb-3">
                     <label htmlFor="empType">
                         <strong>Employee Type</strong>
                     </label>
@@ -108,7 +105,7 @@ const Login = () => {
                         <option value="emp">Employee</option>
                         <option value="hrmanager">HR Manager</option>
                     </select>
-                </div>
+                </div> */}
 
                 <button type="button" className="btn btn-primary" onClick={login}>
                     Sign In

@@ -87,6 +87,7 @@ const OwnAttendancce = () => {
                                                     <th scope="col">CheckOut</th>
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Working Hours</th> 
+                                                    <th scope="col">OT</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -96,6 +97,7 @@ const OwnAttendancce = () => {
 
                                                     let type = "Pending";
                                                     let workingHours = ""; 
+                                                    let ot = "";
 
                                                     if (!checkOutTime) {
                                                         type = "Pending";
@@ -106,9 +108,12 @@ const OwnAttendancce = () => {
                                                         const hours = Math.floor(timeDifference / (1000 * 60 * 60));
                                                         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
                                                         workingHours = `${hours}h ${minutes}m`;
-
+                                                        
                                                         if (hours >= 8) {
                                                             type = "Present";
+                                                            if(hours > 8) {
+                                                                ot = `${hours - 8}h ${minutes}m`;
+                                                            }
                                                         } else if (hours >= 4 && hours < 8) {
                                                             type = "Halfday";
                                                         } else {
@@ -125,6 +130,7 @@ const OwnAttendancce = () => {
                                                             <td>{checkOutTime}</td>
                                                             <td>{type}</td>
                                                             <td>{workingHours}</td> 
+                                                            <td>{ot}</td>
                                                         </tr>
                                                     );
                                                 })}
