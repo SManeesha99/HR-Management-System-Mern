@@ -78,7 +78,13 @@ router.post("/login", async (req,res) => {
   }
 })
 
-//login
+//update employee
+router.put('/update/:id', (req, res) => {
+    Employee.findByIdAndUpdate(req.params.id, req.body)
+        .then(employee => res.json({ msg: 'Updated successfully' }))
+        .catch(err => res.status(400).json({ error: 'Unable to update the Database' }));
+});
+
 
 
 

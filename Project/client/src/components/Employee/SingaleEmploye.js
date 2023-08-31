@@ -28,7 +28,14 @@ const SingaleEmploye = () => {
         <div className="container mt-4 ml-3" >
         <div className="card">
           <div className="card-header">
-            <h2>Employee Details</h2>
+            <div className='row'>
+              <div className='col-10'>
+              <h2>Employee Details</h2>
+              </div>
+              <div className='col-2'>
+                <Link to={`/updateEmpDetails/${empID}`} className='btn' style={{ borderColor:'black' , background:'black' , textDecoration:'none', color:'white'}}>Update Details</Link>
+              </div>
+            </div>
           </div>
           <div className="card-body">
             <div className="row">

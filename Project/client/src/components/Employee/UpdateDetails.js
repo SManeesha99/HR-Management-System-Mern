@@ -1,80 +1,78 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink,Link,useParams,useNavigate } from 'react-router-dom'
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import EmpSideNav from '../EmpSideNav'
+import React from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useParams, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+import NavBar from '../NavBar'
 
-
-const UpdateEmpDetails = () => {
-
-  const id = localStorage.getItem('id');
-  const [employee, setEmployee] = React.useState([]);
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const params=useParams();
-  const empID=params.id;
-  const history = useNavigate();
-
-  useEffect(()=>{
-    const getOneEmployee = async () => {
-      await axios.get(`http://localhost:8000/employee/${empID}`).then((res) => {
-        setEmployee(res.data);
-      }).catch((err) => {
-          console.log(err.massage);
-      }) 
-  }
-  getOneEmployee();
-  },[])
-
-  const sendRequest = async() =>{
-
-    await axios.put(`http://localhost:8000/employee/update/${empID}` , {
+const UpdateDetails = () => {
+    // const id = localStorage.getItem('id');
+    const [employee, setEmployee] = React.useState([]);
+    const [searchTerm, setSearchTerm] = React.useState("");
+    const params=useParams();
+    const empID=params.id;
+    const history = useNavigate();
   
-    empNo:String(employee.empNo),
-    empName:String(employee.empName),
-    email:String(employee.email),
-    empType:String(employee.empType),
-    gender:String(employee.gender),
-    NIC:String(employee.NIC),
-    salary:String(employee.salary),
-    address:String(employee.address),
-    contactNo:String(employee.contactNo),
-    empField:String(employee.empField),
-
-
-
-
-  
-    }).then(()=>{
-  
-        Swal.fire({
-            title: "Success!",
-            text: "Employee Details Updated Successfully",
-            icon: 'success',
-            timer: 2000,
-            button: false,
-          });
-        
-    })
-
-}
-
-    const handleSubmit = (e) =>{
-      e.preventDefault();
-      sendRequest().then(()=>history(`/singaleEmploye/${empID}`));
-    };
-
-    const handleChange =(e)=>{
-
-      setEmployee((prevState)=>({
-          ...prevState,
-          [e.target.name]:e.target.value,
-      }))
+    useEffect(()=>{
+      const getOneEmployee = async () => {
+        await axios.get(`http://localhost:8000/employee/${empID}`).then((res) => {
+          setEmployee(res.data);
+        }).catch((err) => {
+            console.log(err.massage);
+        }) 
     }
-
+    getOneEmployee();
+    },[])
+  
+    const sendRequest = async() =>{
+  
+      await axios.put(`http://localhost:8000/employee/update/${empID}` , {
+    
+      empNo:String(employee.empNo),
+      empName:String(employee.empName),
+      email:String(employee.email),
+      empType:String(employee.empType),
+      gender:String(employee.gender),
+      NIC:String(employee.NIC),
+      salary:String(employee.salary),
+      address:String(employee.address),
+      contactNo:String(employee.contactNo),
+      empField:String(employee.empField),
+  
+  
+  
+  
+    
+      }).then(()=>{
+    
+          Swal.fire({
+              title: "Success!",
+              text: "Employee Details Updated Successfully",
+              icon: 'success',
+              timer: 2000,
+              button: false,
+            });
+          
+      })
+  
+  }
+  
+      const handleSubmit = (e) =>{
+        e.preventDefault();
+        sendRequest().then(()=>history(`/employeeDetails/${empID}`));
+      };
+  
+      const handleChange =(e)=>{
+  
+        setEmployee((prevState)=>({
+            ...prevState,
+            [e.target.name]:e.target.value,
+        }))
+      }
   return (
     <div>
-      <EmpSideNav/>
-        <div className='container-sm '>
+        <NavBar />
+    <div className='container-sm '>
       <section className="gradient-custom pt-5">
         <div className="container pt-5 h-100">
           <div className="row justify-content-center align-items-center h-100">
@@ -99,7 +97,7 @@ const UpdateEmpDetails = () => {
                           value={employee.empNo}
                           onChange={handleChange}
                           placeholder="Enter Employee Number"
-                          readOnly
+                          required
                         />
                       </div>
 
@@ -141,34 +139,22 @@ const UpdateEmpDetails = () => {
                         <label htmlFor="empType">
                           <strong>Employee Type</strong>
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          autoComplete="off"
-                          name="empType"
-                          id='empType'
-                          value={employee.empType}
-                          onChange={handleChange}
-                          placeholder="Enter Employee Email"
-                          readOnly
-                        />
+                        <select class="form-select" id="empType" name='empType' onChange={handleChange} required>
+                            <option selected disabled>{employee.empType}</option>
+                            <option value="emp">Employee</option>
+                            <option value="hrmanager">HR Manager</option>
+                        </select>
                       </div> 
 
                       <div className="mb-3">
                         <label htmlFor="empType">
                           <strong>Gender</strong>
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          autoComplete="off"
-                          name="gender"
-                          id='gender'
-                          value={employee.gender}
-                          onChange={handleChange}
-                          placeholder="Enter Employee Email"
-                          readOnly
-                        />
+                        <select class="form-select" id="gender" name='gender' onChange={handleChange} required>
+                            <option selected disabled>{employee.gender}</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
                       </div> 
                       
                       <div className="mb-3">
@@ -201,7 +187,7 @@ const UpdateEmpDetails = () => {
                           value={employee.salary}
                           onChange={handleChange}
                           placeholder="Enter Employee Salary"
-                          readOnly
+                          required
                         />
                       </div>
 
@@ -243,8 +229,8 @@ const UpdateEmpDetails = () => {
                         <label htmlFor="empField">
                           <strong>Employee Position</strong>
                         </label>
-                        <select class="form-select" id="empField" onChange={handleChange}  required>
-                            <option selected disabled>Select Employee Position</option>
+                        <select class="form-select" id="empField" name='empField' onChange={handleChange}  required>
+                            <option selected disabled>{employee.empField}</option>
                             <option value="IT">IT</option>
                             <option value="HR">HR</option>
                         </select>
@@ -269,4 +255,4 @@ const UpdateEmpDetails = () => {
   )
 }
 
-export default UpdateEmpDetails
+export default UpdateDetails
