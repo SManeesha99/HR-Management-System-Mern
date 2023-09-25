@@ -23,11 +23,16 @@ const  Details = () => {
     },[]);
 
     const filterEmployee = employee.filter((employee) => {
-        return (
-            employee.empNo.toLowerCase().includes(searchTerm.toLocaleLowerCase())||
-            employee.empName.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-        );
-    });
+        if (employee.empNo && employee.empName) {
+          return (
+            employee.empNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            employee.empName.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+        } else {
+          return false; 
+        }
+      });
+      
 
     // const params = useParams();
     // const [employee, setEmployee] = useState([]);
