@@ -57,7 +57,7 @@ const CheckOut = () => {
                             <div className='col-md-5'>
                                 <div className='card'>
                                     <div className='card-header'>
-                                        <h3>Add Daily CheckOut</h3>
+                                        <h3>Add Daily OFF</h3>
                                     </div>
                                     <div className='card-body text-center'>
                                         <form>
@@ -82,7 +82,7 @@ const CheckOut = () => {
                                             />
                                             </div>
                                             <div className='form-group'>
-                                                <label htmlFor='checkOut'>Check-Out</label>
+                                                <label htmlFor='checkOut'>OFF Time</label>
                                                 <div className='d-flex align-items-center justify-content-center'>
                                                     <input
                                                         type='time'
@@ -94,8 +94,8 @@ const CheckOut = () => {
                                                     />
                                                 </div>
                                             </div>
-                                            <button type='submit' className='btn btn-primary mt-3' onClick={handleSubmit}>
-                                                Submit
+                                            <button type='submit' className='btn btn-danger mt-3' style={{ backgroundColor:'red' }} onClick={handleSubmit}>
+                                                OFF
                                             </button>
                                         </form>
                                         <hr />

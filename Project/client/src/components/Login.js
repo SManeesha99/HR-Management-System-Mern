@@ -17,6 +17,9 @@ const Login = () => {
             
     
             if (loginUser.email === "admin@gmail.com" && loginUser.password === "admin") {
+                localStorage.setItem("email","admin@gmail.com");
+                localStorage.setItem("empType","admin");
+                localStorage.setItem("adminNo", "01");
                 Swal.fire({
                     title: "Success!",
                     text: "Login Successful Admin!",
@@ -25,7 +28,20 @@ const Login = () => {
                     showConfirmButton: false,
                 });
                 navigate("/details"); 
-            } else if (response.data.empType === "hrmanager" || response.data.empType === "emp" ) {
+            } else if(loginUser.email === "admin2@gmail.com" && loginUser.password === "admin2"){
+                localStorage.setItem("email","admin2@gmail.com");
+                localStorage.setItem("empType","admin");
+                localStorage.setItem("adminNo", "02");
+                Swal.fire({
+                    title: "Success!",
+                    text: "Login Successful Admin!",
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+                navigate("/details"); 
+            }
+            else if (response.data.empType === "hrmanager" || response.data.empType === "emp" ) {
                 localStorage.setItem("email", response.data.email);
                 localStorage.setItem("empType", response.data.empType);
                 localStorage.setItem("id", response.data.id);

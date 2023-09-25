@@ -52,7 +52,7 @@ const AddAttendance = () => {
             <div className="col-md-5">
                 <div className="card">
                     <div className="card-header">
-                        <h3>Add Daily CheckIn</h3>
+                        <h3>Add Daily ON</h3>
                     </div>
                     <div className="card-body text-center">
                         <form onSubmit={handleRecordAttendance}>
@@ -90,7 +90,7 @@ const AddAttendance = () => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="checkIn">Check-In</label>
+                                <label htmlFor="checkIn">ON Time</label>
                                 <div className="d-flex align-items-center justify-content-center">
                                     <input
                                         type="time"
@@ -118,7 +118,7 @@ const AddAttendance = () => {
                                 </div>
                             </div> */}
                             <button type="submit" className="btn btn-primary mt-3">
-                                Submit
+                                ON
                             </button>
                         </form>
                         <hr />

@@ -83,8 +83,8 @@ const OwnAttendancce = () => {
                                                     <th scope="col">No</th>
                                                     <th scope="col">EmpNo</th>
                                                     <th scope="col">Date</th>
-                                                    <th scope="col">CheckIn</th>
-                                                    <th scope="col">CheckOut</th>
+                                                    <th scope="col">On</th>
+                                                    <th scope="col">Off</th>
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Working Hours</th> 
                                                     <th scope="col">OT</th>
@@ -128,10 +128,16 @@ const OwnAttendancce = () => {
                                                             <td><a href={`/checkout/${entry._id}`} style={{ textDecoration:'none', color:'black' }}>{new Date(entry.attendance[0].date).toISOString().split('T')[0]}</a></td>
                                                             <td>{checkInTime}</td>
                                                             <td>{checkOutTime}</td>
-                                                            <td>{type}</td>
+                                                            <td style={{
+                                                                backgroundColor: type === 'Present' ? '#99ff66' : type === 'Short Leave' ? '#ffff99' : '#ff6666',
+                                                                color: 'black'
+                                                            }}>
+                                                                {type}
+                                                            </td>
                                                             <td>{workingHours}</td> 
                                                             <td>{ot}</td>
                                                         </tr>
+                                                        
                                                     );
                                                 })}
                                             </tbody>
