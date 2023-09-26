@@ -21,6 +21,8 @@ import OwnAttendancce from './components/Employee/OwnAttendancce';
 import SingaleEmploye from './components/Employee/SingaleEmploye';
 import UpdateEmpDetails from './components/Employee/UpdateEmpDetails';
 import UpdateDetails from './components/Employee/UpdateDetails';
+import UpdateCheckOut from './components/MonthlyReport/UpdateCheckOut';
+import UpdateCheckIn from './components/MonthlyReport/UpdateCheckIn';
 
 export default class App extends Component {
   render() {
@@ -50,6 +52,8 @@ export default class App extends Component {
             <Route path="/singaleEmploye/:id" exact element={<SingaleEmploye />} />
             <Route path="/updateEmpDetails/:id" exact element={<UpdateEmpDetails />} />
             <Route path="/updateDetails/:id" exact element={<UpdateDetails />} />
+            <Route path="/updateCheckOut/:id" exact element={<UpdateCheckOut />} />
+            <Route path="/updateCheckIn/:id" exact element={<UpdateCheckIn />} />
           </Routes>
         </div>
       </BrowserRouter>
