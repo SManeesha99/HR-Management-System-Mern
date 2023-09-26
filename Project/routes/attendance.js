@@ -56,11 +56,11 @@ router.put('/update/:id', (req, res) => {
 
 
 
-
+//checkout time update
   router.put('/:id/checkout', async (req, res) => {
     try {
         const attendanceId = req.params.id;
-        const newCheckOut = req.body.checkOut; // Assuming you send this in the request body
+        const newCheckOut = req.body.checkOut;
 
         const attendance = await Attendance.findById(attendanceId);
 
@@ -68,7 +68,7 @@ router.put('/update/:id', (req, res) => {
             return res.status(404).json({ message: 'Attendance not found' });
         }
 
-        attendance.attendance[0].checkOut = newCheckOut; // Assuming you want to update the first attendance record
+        attendance.attendance[0].checkOut = newCheckOut;
         await attendance.save();
 
         res.status(200).json({ message: 'Check-out time updated successfully' });
@@ -76,6 +76,29 @@ router.put('/update/:id', (req, res) => {
         res.status(500).json({ message: 'Error updating check-out time', error: error.message });
     }
 });
+
+
+//checkin update admin
+router.put('/:id/checkin', async (req, res) => {
+    try {
+        const attendanceId = req.params.id;
+        const newCheckIn = req.body.checkIn;
+
+        const attendance = await Attendance.findById(attendanceId);
+
+        if (!attendance) {
+            return res.status(404).json({ message: 'Attendance not found' });
+        }
+
+        attendance.attendance[0].checkIn = newCheckIn;
+        await attendance.save();
+
+        res.status(200).json({ message: 'Check-in time updated successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating check-in time', error: error.message });
+    }
+});
+
 
 
 router.get('/attendance/check', (req, res) => {
