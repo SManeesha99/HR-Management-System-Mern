@@ -105,8 +105,8 @@ const ViewAttendance = () => {
                                                     <th scope="col">No</th>
                                                     <th scope="col">EmpNo</th>
                                                     <th scope="col">Date</th>
-                                                    <th scope="col">CheckIn</th>
-                                                    <th scope="col">CheckOut</th>
+                                                    <th scope="col">On</th>
+                                                    <th scope="col">Off</th>
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Working Hours</th>
                                                     <th scope="col">Ot Hours</th>
@@ -131,8 +131,8 @@ const ViewAttendance = () => {
                                                         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
                                                         workingHours = `${hours}h ${minutes}m`;
 
-                                                        if (hours >= 8) {
-                                                            type = "Present";
+                                                        if (hours >= 9) {
+                                                            type = "Full day";
                                                             if(hours > 8) {
                                                                 ot = `${hours - 8}h ${minutes}m`;
                                                             }
@@ -148,9 +148,22 @@ const ViewAttendance = () => {
                                                             <td>{index + 1}</td>
                                                             <td>{entry.empNo}</td>
                                                             <td>{new Date(entry.attendance[0].date).toISOString().split('T')[0]}</td>
-                                                            <td>{checkInTime}</td>
-                                                            <td>{checkOutTime}</td>
-                                                            <td>{type}</td>
+                                                            <td><a href={`/updateCheckIn/${entry._id}`} style={{ textDecoration:'none', color:'black' }}>{checkInTime}</a></td>
+                                                            <td><a href={`/updateCheckOut/${entry._id}`} style={{ textDecoration:'none', color:'black' }}>{checkOutTime || '00.00'}</a></td>
+                                                            <td>
+                                                            {type === "Full day" && (
+                                                                <span className="badge badge-primary" style={{ backgroundColor:'#80ff80', color:'black' }}>{type}</span>
+                                                            )}
+                                                            {type === "Halfday" && (
+                                                                <span className="badge badge-warning" style={{ backgroundColor:'#ffff99', color:'black' }}>{type}</span>
+                                                            )}
+                                                            {type === "Short Leave" && (
+                                                                <span className="badge badge-danger" style={{ backgroundColor:'#80bfff', color:'black' }}>{type}</span>
+                                                            )}
+                                                            {type === "Pending" && (
+                                                                <span className="badge badge-secondary" style={{ backgroundColor:'red' , color:'white' }}>{type}</span>
+                                                            )}
+                                                        </td>
                                                             <td>{workingHours}</td> 
                                                             <td>{ot}</td>
                                                         </tr>
