@@ -53,7 +53,7 @@ const UpdateCheckIn = () => {
                             <div className='col-md-5'>
                                 <div className='card'>
                                     <div className='card-header'>
-                                        <h3>Add Daily OFF</h3>
+                                        <h3>Daily ON</h3>
                                     </div>
                                     <div className='card-body text-center'>
                                         <form>

@@ -110,7 +110,7 @@ const OwnAttendancce = () => {
                                                         workingHours = `${hours}h ${minutes}m`;
                                                         
                                                         if (hours >= 8) {
-                                                            type = "Present";
+                                                            type = "Full day";
                                                             if(hours > 8) {
                                                                 ot = `${hours - 8}h ${minutes}m`;
                                                             }
@@ -127,13 +127,21 @@ const OwnAttendancce = () => {
                                                             <td>{entry.empNo}</td>
                                                             <td><a href={`/checkout/${entry._id}`} style={{ textDecoration:'none', color:'black' }}>{new Date(entry.attendance[0].date).toISOString().split('T')[0]}</a></td>
                                                             <td>{checkInTime}</td>
-                                                            <td>{checkOutTime}</td>
-                                                            <td style={{
-                                                                backgroundColor: type === 'Present' ? '#99ff66' : type === 'Short Leave' ? '#ffff99' : '#ff6666',
-                                                                color: 'black'
-                                                            }}>
-                                                                {type}
-                                                            </td>
+                                                            <td>{checkOutTime || '-'}</td>
+                                                            <td>
+                                                            {type === "Full day" && (
+                                                                <span className="badge badge-primary" style={{ backgroundColor:'#80ff80', color:'black' }}>{type}</span>
+                                                            )}
+                                                            {type === "Halfday" && (
+                                                                <span className="badge badge-warning" style={{ backgroundColor:'#ffff99', color:'black' }}>{type}</span>
+                                                            )}
+                                                            {type === "Short Leave" && (
+                                                                <span className="badge badge-danger" style={{ backgroundColor:'#80bfff', color:'black' }}>{type}</span>
+                                                            )}
+                                                            {type === "Pending" && (
+                                                                <span className="badge badge-secondary" style={{ backgroundColor:'red' , color:'white' }}>{type}</span>
+                                                            )}
+                                                        </td>
                                                             <td>{workingHours}</td> 
                                                             <td>{ot}</td>
                                                         </tr>
