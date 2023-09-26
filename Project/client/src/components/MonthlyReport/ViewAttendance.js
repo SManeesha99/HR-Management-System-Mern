@@ -105,8 +105,8 @@ const ViewAttendance = () => {
                                                     <th scope="col">No</th>
                                                     <th scope="col">EmpNo</th>
                                                     <th scope="col">Date</th>
-                                                    <th scope="col">CheckIn</th>
-                                                    <th scope="col">CheckOut</th>
+                                                    <th scope="col">On</th>
+                                                    <th scope="col">Off</th>
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Working Hours</th>
                                                     <th scope="col">Ot Hours</th>
