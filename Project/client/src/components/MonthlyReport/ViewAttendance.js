@@ -131,7 +131,7 @@ const ViewAttendance = () => {
                                                         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
                                                         workingHours = `${hours}h ${minutes}m`;
 
-                                                        if (hours >= 9) {
+                                                        if (hours >= 8) {
                                                             type = "Full day";
                                                             if(hours > 8) {
                                                                 ot = `${hours - 8}h ${minutes}m`;

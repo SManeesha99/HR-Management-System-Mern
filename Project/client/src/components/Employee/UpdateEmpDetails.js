@@ -133,7 +133,7 @@ const UpdateEmpDetails = () => {
                           value={employee.email}
                           onChange={handleChange}
                           placeholder="Enter Employee Email"
-                          required
+                          readOnly
                         />
                       </div>
 
@@ -184,7 +184,7 @@ const UpdateEmpDetails = () => {
                           value={employee.NIC}
                           onChange={handleChange}
                           placeholder="Enter Employee NIC"
-                          required
+                          readOnly
                         />
                       </div>
 
@@ -243,11 +243,16 @@ const UpdateEmpDetails = () => {
                         <label htmlFor="empField">
                           <strong>Employee Position</strong>
                         </label>
-                        <select class="form-select" id="empField" onChange={handleChange}  required>
-                            <option selected disabled>Select Employee Position</option>
-                            <option value="IT">IT</option>
-                            <option value="HR">HR</option>
-                        </select>
+                        <input
+                          type="text"
+                          className="form-control"
+                          autoComplete="off"
+                          name="empField"
+                          id='empField'
+                          value={employee.empField}
+                          onChange={handleChange}
+                          readOnly
+                        />
                       </div>
 
                       <center>

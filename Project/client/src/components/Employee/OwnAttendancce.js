@@ -88,6 +88,7 @@ const OwnAttendancce = () => {
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Working Hours</th> 
                                                     <th scope="col">OT</th>
+                                                    {/* <th scope='col'>Action</th> */}
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -144,6 +145,9 @@ const OwnAttendancce = () => {
                                                         </td>
                                                             <td>{workingHours}</td> 
                                                             <td>{ot}</td>
+                                                            {/* <td>
+                                                            <button type="button" class="btn btn-primary">OFF</button>
+                                                            </td> */}
                                                         </tr>
                                                         
                                                     );
