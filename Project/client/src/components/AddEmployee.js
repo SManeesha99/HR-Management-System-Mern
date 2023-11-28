@@ -18,6 +18,26 @@ const AddEmployee = () => {
   const [contactNo, setContactNo] = useState("");
   const [empField, setEmpField] = useState("");
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateNIC = (nic) => {
+    const nicRegex = /^(?:\d{12}|\d{9}[Vv])$/;
+    return nicRegex.test(nic);
+  };
+
+  const validateContactNumber = (contactNo) => {
+    const contactNoRegex = /^\d{10}$/;
+    return contactNoRegex.test(contactNo);
+  };
+
+  const validateSalary = (salary) => {
+    const salaryRegex = /^\d+(\.\d{1,2})?$/;
+    return salaryRegex.test(salary);
+  };
+
   function sendData(e){
     e.preventDefault();
     const newEmployee = {
@@ -65,6 +85,18 @@ const AddEmployee = () => {
     }
     else if(empField ===''){
       Swal.fire("Employee Field Fields is empty");
+    }
+    else if (!validateEmail(email)) {
+      Swal.fire("Invalid Email Format");
+    }
+    else if (!validateNIC(NIC)) {
+      Swal.fire("Invalid NIC Format");
+    }
+    else if (!validateContactNumber(contactNo)) {
+      Swal.fire("Invalid Contact Number Format");
+    }
+    else if (!validateSalary(salary)) {
+      Swal.fire("Invalid Salary Format");
     }else{
       axios.post("http://localhost:8000/employee/add", newEmployee).then(()=>{
         Swal.fire({

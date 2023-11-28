@@ -5,7 +5,7 @@ import NavBar from '../NavBar';
 
 const EmployeeDetails = () => {
 
-    
+  const [model, setModel] = useState(false);
   const [password, setPassword] = useState('');
   const [employee, setEmployee] = useState({});
   const params = useParams();
@@ -15,13 +15,15 @@ const EmployeeDetails = () => {
       setPassword(e.target.value);
   };
 
-  const updatePassword = async () => {
+  const updatePassword = async (closeModal) => {
       try {
           const response = await axios.put(`http://localhost:8000/employee/updatePassword/${empID}`, {
               password,
           });
           console.log(response.data);
-          alert('Password updated successfully');
+          // alert('Password updated successfully');
+          closeModal(); // Close the modal
+          window.location.reload(); // Reload the page
       } catch (error) {
           console.error(error);
           alert('An error occurred while updating the password');
@@ -86,28 +88,8 @@ const EmployeeDetails = () => {
                   <form className='border py-2'>
                     <center>
                           <h3>System Login Information</h3>
-                          <p>
-                              <strong>User email:</strong> {employee.email}
-                          </p>
-                          <p>
-                              <strong>New Password:</strong>
-                              
-                              <input
-                                  className='form-control'
-                                  type='password'
-                                  id='password'
-                                  name='password'
-                                  value={password}
-                                  onChange={handlePasswordChange}
-                                  placeholder={employee.password}
-                              />
-                          </p>
-                          <button
-                              className='btn btn-primary'
-                              type='button'
-                              onClick={updatePassword}
-                          >
-                              Update Password
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled={!!employee.password}>
+                            Set Password
                           </button>
                     </center>
                   </form>
@@ -117,6 +99,43 @@ const EmployeeDetails = () => {
         </div>
       </div>
         </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Set Password</h5>
+        <form className='border py-2'>
+          <center>
+                <h3>System Login Information</h3>
+                <p>
+                    <strong>User email:</strong> {employee.email}
+                </p>
+                <p>
+                    <strong>New Password:</strong>
+                    
+                    <input
+                        className='form-control'
+                        type='password'
+                        id='password'
+                        name='password'
+                        value={password}
+                        onChange={handlePasswordChange}
+                        placeholder={employee.password}
+                    />
+                </p>
+                <button
+                    className='btn btn-primary'
+                    type='button'
+                    onClick={() => updatePassword(() => setModel(false))}
+                >
+                    Set Password
+                </button>
+          </center>
+        </form>
+        </div>
+        </div>
+        </div>
+      </div>
 
     </div>
   )

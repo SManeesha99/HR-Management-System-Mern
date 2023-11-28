@@ -26,7 +26,8 @@ const  Details = () => {
         if (employee.empNo && employee.empName) {
           return (
             employee.empNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            employee.empName.toLowerCase().includes(searchTerm.toLowerCase())
+            employee.empName.toLowerCase().includes(searchTerm.toLowerCase())||
+            employee.NIC.toLowerCase().includes(searchTerm.toLowerCase())
           );
         } else {
           return false; 
