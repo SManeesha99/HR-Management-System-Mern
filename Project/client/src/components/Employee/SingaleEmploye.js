@@ -4,9 +4,28 @@ import axios from 'axios';
 import EmpSideNav from '../EmpSideNav'
 
 const SingaleEmploye = () => {
+    const [password, setPassword] = useState('');
     const [employee, setEmployee] = useState({});
     const params = useParams();
     const empID = params.id;
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+  const updatePassword = async () => {
+      try {
+          const response = await axios.put(`http://localhost:8000/employee/updatePassword/${empID}`, {
+              password,
+          });
+          console.log(response.data);
+          alert('Password updated successfully');
+          window.location.reload();
+      } catch (error) {
+          console.error(error);
+          alert('An error occurred while updating the password');
+      }
+  };
 
     useEffect(() => {
         const getOneEmployee = async () => {
@@ -60,7 +79,38 @@ const SingaleEmploye = () => {
                 <p><strong>Address:</strong> <p className='form-control'>{employee.address}</p></p>
                 <p><strong>Contact Number:</strong> <p className='form-control'>{employee.contactNo}</p></p>
               </div>
+              <div className="col-6">
+                  <form className='border py-2'>
+                    <center>
+                          <h3>System Login Information</h3>
+                          <p>
+                              <strong>User email:</strong> {employee.email}
+                          </p>
+                          <p>
+                              <strong>New Password:</strong>
+                              
+                              <input
+                                  className='form-control'
+                                  type='password'
+                                  id='password'
+                                  name='password'
+                                  value={password}
+                                  onChange={handlePasswordChange}
+                                  placeholder={employee.password}
+                              />
+                          </p>
+                          <button
+                              className='btn btn-primary'
+                              type='button'
+                              onClick={updatePassword}
+                          >
+                              Update Password
+                          </button>
+                    </center>
+                  </form>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
