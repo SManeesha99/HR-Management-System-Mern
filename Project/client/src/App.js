@@ -23,6 +23,7 @@ import UpdateEmpDetails from './components/Employee/UpdateEmpDetails';
 import UpdateDetails from './components/Employee/UpdateDetails';
 import UpdateCheckOut from './components/MonthlyReport/UpdateCheckOut';
 import UpdateCheckIn from './components/MonthlyReport/UpdateCheckIn';
+import LeaveRequestDashboard from './components/RequestLeave/LeaveRequestDashboard';
 
 export default class App extends Component {
   render() {
@@ -54,6 +55,7 @@ export default class App extends Component {
             <Route path="/updateDetails/:id" exact element={<UpdateDetails />} />
             <Route path="/updateCheckOut/:id" exact element={<UpdateCheckOut />} />
             <Route path="/updateCheckIn/:id" exact element={<UpdateCheckIn />} />
+            <Route path='/employee/leave/:empid' exact element ={<LeaveRequestDashboard/>}/>
           </Routes>
         </div>
       </BrowserRouter>

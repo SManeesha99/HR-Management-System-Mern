@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faCalendar, faList,faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser, faHand,faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import './css/navbar.css';
 
 const EmpSideNav = () => {
@@ -16,6 +16,13 @@ const EmpSideNav = () => {
         localStorage.clear();
         window.location.href = '/login';
     };
+
+    const handleRequestLeaves = () =>{
+        const employeeId = localStorage.getItem('id');
+        if(employeeId){
+            window.location.href = `/employee/leave/${employeeId}`;
+        }
+    }
   return (
 <div className="sidebar">
             <img src="../images/logo.png" alt="Logo" className="sidebar-logo" />
@@ -31,8 +38,14 @@ const EmpSideNav = () => {
                         <FontAwesomeIcon icon={faUser} className="icon" /> Employee Details
                     </a>
                 </li>
-            </ul>
 
+                <li className="sidebar-item">
+                    <a href='#' className="sidebar-link" onClick={handleRequestLeaves}>
+                        <FontAwesomeIcon icon={faHand} className="icon" /> Request Leaves
+                    </a>
+                </li>
+            </ul>
+            
             <div className="sidebar-item">
                 <ul className="sidebar-nav">
                     <li className="sidebar-item">
